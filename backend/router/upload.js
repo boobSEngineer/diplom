@@ -8,11 +8,11 @@ const router = express.Router();
 router.post("/font", authorize(), fileMiddleware.single("font"), async (req, res) => {
     try {
         let path = req.file.filename;
-        let full_name = req.file.originalname;
+        let full_name = req.body.full_name;
         let id_user = req.user.id_user;
-        let version = "1.0";
-        let license = "test.license";
-        let about = "test";
+        let version = req.body.version;
+        let license = req.body.license;
+        let about = req.body.about;
         let views = "0";
 
         await db.none(`INSERT INTO "font" ("path", "full_name", "id_user", "version", "license", "about", "views") VALUES ('${path}','${full_name}',${id_user},'${version}','${license}', '${about}', '${views}')`)

@@ -12,7 +12,6 @@ const Profile = (props) => {
                 <div><div> {f.full_name} </div> <a href={`http://localhost:4000/file/fonts/${f.path}`}>download</a> </div>
             )}
             </div>
-            <a href="/fonts"> фонты </a>
             <div>
                 <FormContainer/>
             </div>

@@ -16,11 +16,11 @@ const Login = (props) => {
             <form onSubmit={handleSubmit} >
                 <label>
                     <p>Login</p>
-                    <input type="text" placeholder="login" value={login} onChange={ e => {setLogin(e.target.value)}}/>
+                    <input type="text" name="login" placeholder="login" value={login} onChange={ e => {setLogin(e.target.value)}}/>
                 </label>
                 <label>
                     <p>Password</p>
-                    <input type="password" placeholder="password" value={password} onChange={ e => {setPassword(e.target.value)}}/>
+                    <input type="password" name="password" placeholder="password" value={password} onChange={ e => {setPassword(e.target.value)}}/>
                 </label>
                 <div>
                     <button type="submit">Submit</button>
