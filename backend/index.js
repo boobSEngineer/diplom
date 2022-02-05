@@ -3,7 +3,6 @@ import fontRouter from './router/fonts.js';
 import authRouter from './router/auth.js';
 import getRouter from './router/get.js';
 import uploadRouter from './router/upload.js';
-import downloadRouter from './router/download.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import path from "path"
@@ -38,6 +37,5 @@ app.use("/api/fonts", fontRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/get", getRouter);
 app.use("/api/upload", uploadRouter);
-app.use("/api/download", downloadRouter);
 
 
