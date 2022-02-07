@@ -2,7 +2,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 
 const Form = (props) => {
-    const {register, handleSubmit, formState: {errors}} = useForm({ mode: "onBlur" });
+    const {register, handleSubmit, formState: {errors}} = useForm({mode: "onBlur"});
     const handleError = (errors) => {
     };
     const registerOptions = {

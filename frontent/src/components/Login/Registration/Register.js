@@ -3,11 +3,10 @@ import {useForm} from "react-hook-form";
 import s from "./Register.module.css";
 
 const Register = (props) => {
-    const { register, handleSubmit } = useForm();
+    const {register, handleSubmit} = useForm();
     const handleError = (errors) => {
     };
-    const processForm  = (d) => {
-        debugger
+    const processForm = (d) => {
         props.register(d.login, d.username, d.password)
     }
 
