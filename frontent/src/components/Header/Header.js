@@ -10,7 +10,7 @@ const Header = (props) => {
                         <div>{props.login}</div>
                         <button onClick={props.logOut}>Log out</button>
                     </div>
-                    : <a href="/login">Log In</a>
+                    : <div><a href="/login">Log In</a> <a href="/registration">Registration</a></div>
                 }
             </div>
             <div>

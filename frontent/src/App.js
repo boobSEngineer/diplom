@@ -9,6 +9,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {initializedThunkCreate} from "./redux/app-reducer";
 import HomeContainer from "./components/Home/HomeContainer";
+import RegisterContainer from "./components/Login/Registration/RegisterContainer";
 
 const App = (props) => {
     useEffect(() => {
@@ -25,6 +26,7 @@ const App = (props) => {
                 <div className="content">
                     <Route path="/" exact render={() => <HomeContainer/>}/>
                     <Route path="/login" render={() => <LoginContainer/>}/>
+                    <Route path="/registration" render={() => <RegisterContainer/>}/>
                     <Route path="/profile" render={() => <ProfileContainer/>}/>
                     <Route path="/fonts" render={() => <FontsContainer/>}/>
                 </div>
