@@ -3,6 +3,7 @@ import db from "../db.js"
 import {check} from "express-validator";
 import jwt from "jsonwebtoken";
 import {secretKey} from "../index.js";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 const generateAccessToken = (id) => {
@@ -28,7 +29,8 @@ router.post("/registration", [
         if (user !== null) {
             res.json({message: "User exist"}).status(400);
         } else {
-            user = await db.none(`INSERT INTO usr(login, password, name) VALUES('${login}', '${password}', '${username}')`);
+            let hashPassword = bcrypt.hashSync(password, 7);
+            user = await db.none(`INSERT INTO usr(login, password, name) VALUES('${login}', '${hashPassword}', '${username}')`);
             res.json({message: "Register done"});
         }
         // let hashPassword =
@@ -39,7 +41,7 @@ router.post("/registration", [
     }
 });
 
-router.post("/login",[
+router.post("/login", [
     check('login').isEmail(),
     check('password', "Invalid password").isLength({min: 3, max: 30})
 ], async (req, res) => {
@@ -50,18 +52,23 @@ router.post("/login",[
         //     res.status(400).json({errors});
         // }
         let {login, password} = req.body;
-        let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}' AND password = '${password}'`);
+        let passHash = await db.oneOrNone(`SELECT password FROM usr WHERE login = '${login}'`);
+        let validPassword = bcrypt.compareSync(password, passHash.password);
+        let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}'`);
         if (!user) {
-            res.status(400).json({message: `Incorrect login or password`})
+            res.status(400).json({message: `Incorrect login `})
         } else {
-            let token = generateAccessToken(user.id_user);
-            res.cookie('token', token);
-            return res.json({
-                login: user.login,
-                username: user.username,
-            })
+            if (!validPassword) {
+                res.status(400).json({message: `Incorrect password`})
+            } else {
+                let token = generateAccessToken(user.id_user);
+                res.cookie('token', token);
+                return res.json({
+                    login: user.login,
+                    username: user.username,
+                })
+            }
         }
-
     } catch (e) {
         console.log(e)
         res.status(400).json({message: "error"})
@@ -71,8 +78,7 @@ router.post("/login",[
 router.post("/logout", async (req, res) => {
     try {
         res.cookie('token', null).json(null);
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e)
         res.status(400).json({message: "error logout"})
     }
