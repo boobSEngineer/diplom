@@ -3,7 +3,7 @@ import s from "./Login.module.css";
 import {useForm} from "react-hook-form";
 
 const Login = (props) => {
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const handleError = (errors) => {
     };
 
@@ -11,19 +11,31 @@ const Login = (props) => {
         props.logIn(d.login, d.password)
     }
 
+    const registerOptions = {
+        login: {required: "login is required"},
+        password: {required: "password is required"},
+    };
+
+
     return (
         <div className={s.login_wrapper}>
             <h1>Login</h1>
             <form onSubmit={handleSubmit(processForm, handleError)}>
                 <label>
                     <p>Login</p>
-                    <input type="text" name="login"
-                           {...register('login')}/>
+                    <input type="text" name="login" placeholder="login"
+                           {...register('login', registerOptions.login)}/>
+                    <small className="text-danger">
+                        {errors?.login && errors.login.message}
+                    </small>
                 </label>
                 <label>
                     <p>Password</p>
                     <input type="password" name="password" placeholder="password"
-                           {...register('password')}/>
+                           {...register('password', registerOptions.password)}/>
+                    <small className="text-danger">
+                        {errors?.password && errors.password.message}
+                    </small>
                 </label>
                 <div>
                     <button type="submit">Submit</button>
