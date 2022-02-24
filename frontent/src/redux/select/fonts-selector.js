@@ -7,6 +7,5 @@ export const getFonts = (state) => {
 }
 
 export const getFontsByCurrentId = createSelector(getFonts, getCurrentUser, (fonts, id_user) => {
-    debugger
     return fonts.filter(fonts => fonts.id_user === id_user)
 })

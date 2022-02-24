@@ -11,3 +11,7 @@ export const getCurrentUser = (state) => {
     return state.auth.id_user;
 }
 
+export const getStatusMessage = (state) => {
+    return state.auth.status_message;
+}
+

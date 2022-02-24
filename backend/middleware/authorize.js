@@ -7,7 +7,7 @@ export const authorize = (allowUnauthorizedRequests) => {
         try {
             let token = req.cookies.token;
             if (token == null) {
-                return res.status(403).json({message: "Not auth: no token"});
+                return res.json({message: "Not auth: no token"});
             } else {
                 let decodeData = jwt.verify(token, secretKey);
                 if (decodeData.exp >= Date.now() / 1000){
@@ -18,7 +18,7 @@ export const authorize = (allowUnauthorizedRequests) => {
                         req.user = null;
                         next();
                     } else {
-                        return res.status(403).json({message: "Not auth: expired"});
+                        return res.json({message: "Not auth: expired"});
                     }
                 }
 
@@ -29,7 +29,7 @@ export const authorize = (allowUnauthorizedRequests) => {
                 req.user = null;
                 next();
             } else {
-                return res.status(403).json({message: "Not auth: failed to parse"});
+                return res.json({message: "Not auth: failed to parse"});
             }
         }
     }
