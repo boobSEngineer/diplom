@@ -16,10 +16,10 @@ router.post("/font", authorize(), fileMiddleware.single("font"), async (req, res
         let views = "0";
 
         await db.none(`INSERT INTO "font" ("path", "full_name", "id_user", "version", "license", "about", "views") VALUES ('${path}','${full_name}',${id_user},'${version}','${license}', '${about}', '${views}')`)
-        res.json(null);
+        res.json({success: true, message: "Загрузка на сервер прошла успешно."});
     } catch (e) {
         console.log(e);
-        res.status(400).json({message: "Upload error"})
+        res.json({success: false, message: "Ошибка загрузки."})
     }
 })
 

@@ -15,7 +15,7 @@ const generateAccessToken = (id) => {
 
 router.post("/registration", [
     check('login').isEmail(),
-    check('username', "Invalid username").isLength({min: 2}),
+    check('username', "Invalid username").isLength({min: 1}),
     check('password', "Invalid password").isLength({min: 3, max: 30})
 ], async (req, res) => {
     try {
@@ -27,23 +27,23 @@ router.post("/registration", [
         let {login, username, password} = req.body;
         let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}'`);
         if (user !== null) {
-            res.json({message: "User exist"}).status(400);
+            res.json({success: false, message: `Пользователь с таким логином: ${login} уже существуюет.`}).status(400);
         } else {
             let hashPassword = bcrypt.hashSync(password, 7);
             user = await db.none(`INSERT INTO usr(login, password, name) VALUES('${login}', '${hashPassword}', '${username}')`);
-            res.json({message: "Register done"});
+            res.json({success: true, message: "Регистрация прошла успешно."});
         }
         // let hashPassword =
 
     } catch (e) {
         console.log(e)
-        res.status(400).json({message: "Registration error"});
+        res.json({success: false, message: "Ошибка регистрации."});
     }
 });
 
 router.post("/login", [
     check('login').isEmail(),
-    check('password', "Invalid password").isLength({min: 3, max: 30})
+    check('password', "Неверный пароль.").isLength({min: 3, max: 30})
 ], async (req, res) => {
     try {
         // let errors = validationResult(req);
@@ -52,35 +52,35 @@ router.post("/login", [
         //     res.status(400).json({errors});
         // }
         let {login, password} = req.body;
-        let passHash = await db.oneOrNone(`SELECT password FROM usr WHERE login = '${login}'`);
-        let validPassword = bcrypt.compareSync(password, passHash.password);
         let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}'`);
         if (!user) {
-            res.status(400).json({message: `Incorrect login `})
+            res.json({success: false, message: `Неверный логин.`});
+            return
+        }
+        let validPassword = bcrypt.compareSync(password, user.password);
+        if (!validPassword) {
+            res.json({success: false, message: `Неверный пароль.`})
         } else {
-            if (!validPassword) {
-                res.status(400).json({message: `Incorrect password`})
-            } else {
-                let token = generateAccessToken(user.id_user);
-                res.cookie('token', token);
-                return res.json({
-                    login: user.login,
-                    username: user.username,
-                })
-            }
+            let token = generateAccessToken(user.id_user);
+            res.cookie('token', token);
+            return res.json({
+                success: true,
+                login: user.login,
+                username: user.username,
+            })
         }
     } catch (e) {
         console.log(e)
-        res.status(400).json({message: "error"})
+        res.json({success: false, message: "error"})
     }
 })
 
 router.post("/logout", async (req, res) => {
     try {
-        res.cookie('token', null).json(null);
+        res.cookie('token', null).json({success: true});
     } catch (e) {
         console.log(e)
-        res.status(400).json({message: "error logout"})
+        res.json({success: false, message: "error logout"})
     }
 });
 

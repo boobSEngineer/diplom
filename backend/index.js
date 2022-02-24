@@ -24,12 +24,12 @@ app.use(cors({
     origin: true,
     credentials: true
 }));
-
 app.use(express.json());
 app.use(cookieParser());
 app.get("/", (req, res) => {
     res.send("Hello")
 })
+
 
 app.use("/file/fonts", express.static(path.join(__dirname, "/storage/upload/fonts")))
 
