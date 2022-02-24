@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Login.module.css";
 import {useForm} from "react-hook-form";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Login = (props) => {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -12,35 +13,40 @@ const Login = (props) => {
     }
 
     const registerOptions = {
-        login: {required: "login is required"},
-        password: {required: "password is required"},
+        login: {required: "Логин не может быть пустым"},
+        password: {required: "Пароль не может быть пустым"},
     };
 
 
     return (
-        <div className={s.login_wrapper}>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit(processForm, handleError)}>
-                <label>
-                    <p>Login</p>
-                    <input type="text" name="login" placeholder="login"
-                           {...register('login', registerOptions.login)}/>
-                    <small className="text-danger">
-                        {errors?.login && errors.login.message}
-                    </small>
-                </label>
-                <label>
-                    <p>Password</p>
-                    <input type="password" name="password" placeholder="password"
-                           {...register('password', registerOptions.password)}/>
-                    <small className="text-danger">
-                        {errors?.password && errors.password.message}
-                    </small>
-                </label>
-                <div>
-                    <button type="submit">Submit</button>
+        <div className={s.wrapper}>
+            <div className={s.login_wrapper}>
+                <div className={s.box}>
+                    <h3>ВХОД</h3>
+                    <form onSubmit={handleSubmit(processForm, handleError)}>
+                        <div className={s.login}>
+                            <input type="text" name="login" placeholder="Логин"
+                                   {...register('login', registerOptions.login)}/>
+                            <small>
+                                {errors?.login && errors.login.message}
+                            </small>
+                        </div>
+                        <div className={s.password}>
+                            <input type="password" name="password" placeholder="Пароль"
+                                   {...register('password', registerOptions.password)}/>
+                            <small>
+                                {errors?.password && errors.password.message}
+                            </small>
+                        </div>
+                        <div className={s.button}>
+                            <button type="submit">Войти</button>
+                        </div>
+                        <div className={s.message}>
+                            <div>{props.status_message}</div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import {
 } from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import {getStatusMessage} from "../../redux/select/user-selector";
 
 const LoginContainer = (props) => {
     if (props.isAuth) return <Redirect to={"/profile"}/>
@@ -16,7 +17,8 @@ const LoginContainer = (props) => {
 
 const MapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        status_message: getStatusMessage(state),
     }
 };
 

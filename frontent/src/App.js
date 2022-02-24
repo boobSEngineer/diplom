@@ -18,20 +18,19 @@ const App = (props) => {
 
     if (props.initialized) {
         return (
-            <div className="wrapper">
-                <div className="header-top">
-                    <HeaderContainer/>
-                    <a href="/">Diplom</a>
-                </div>
-                <div className="content">
-                    <Route path="/" exact render={() => <HomeContainer/>}/>
-                    <Route path="/login" render={() => <LoginContainer/>}/>
-                    <Route path="/registration" render={() => <RegisterContainer/>}/>
-                    <Route path="/profile" render={() => <ProfileContainer/>}/>
-                    <Route path="/fonts" render={() => <FontsContainer/>}/>
-                </div>
+            <>
+                <HeaderContainer/>
+                <body className="content">
+                <Route path="/" exact render={() => <HomeContainer/>}/>
+                <Route path="/login" render={() => <LoginContainer/>}/>
+                <Route path="/registration" render={() => <RegisterContainer/>}/>
+                <Route path="/profile" render={() => <ProfileContainer/>}/>
+                <Route path="/fonts" render={() => <FontsContainer/>}/>
+                </body>
+                <footer>
+                </footer>
+            </>
 
-            </div>
         )
     } else return <div> INITIALIZING...</div>
 

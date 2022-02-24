@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Profile from "./Profile";
-import {getLogin, getName, getUid} from "../../redux/select/user-selector";
+import {getLogin, getName, getStatusMessage, getUid} from "../../redux/select/user-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {getFonts} from "../../redux/select/fonts-selector";
@@ -27,7 +27,8 @@ const MapStateToProps = (state) => {
         login: getLogin(state),
         id_user: getUid(state),
         isAuth: state.auth.isAuth,
-        fonts:getFonts(state)
+        fonts:getFonts(state),
+        status_message: getStatusMessage(state),
     }
 };
 

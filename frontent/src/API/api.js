@@ -42,6 +42,7 @@ export const userAPI = {
 }
 
 export const authAPI = {
+
     logIn(login, password) {
         return instance.post(`auth/login`, {login, password})
             .then(response => {

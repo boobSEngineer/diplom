@@ -1,24 +1,34 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import h from "./Header.module.css";
 
 const Header = (props) => {
     return (
-        <div>
-            <div>
-                {props.isAuth ?
-                    <div>
-                        <div>{props.login}</div>
-                        <button onClick={props.logOut}>Log out</button>
+        <>
+            <header>
+                <div className={h.wrapper}>
+                    <div className={h.header_top}>
+                        <div className={h.header_top_block1}>
+                            <div className={h.logo}>
+                                <p><a href="/">Диплом</a></p>
+                            </div>
+                            <div className={h.search}>
+                                <input placeholder="Найти шрифт..." type="text"/>
+                            </div>
+                        </div>
+                        <div className={h.header_top_block2}>
+                            <ul className={h.nav}>
+                                <li><a href="/fonts">Галерея</a></li>
+                                <li><a href="">Создать новый шрифт</a></li>
+                                <li><a href="">Не забыть вставить кнопку</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    : <div><a href="/login">Log In</a> <a href="/registration">Registration</a></div>
-                }
-            </div>
-            <div>
-                <a href="/fonts">Галерея</a>
-                <a href="/profile">Профиль</a>
-                <p>Создать новый</p>
-            </div>
-        </div>
+                </div>
+                <hr/>
+            </header>
+        </>
+
     )
 };
+
 export default Header;
