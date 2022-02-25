@@ -2,3 +2,28 @@
     width: 1200px;
     margin: 0 auto;
 }
+
+.content_setting{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort_fonts{
+
+}
+.sentence_font{
+
+}
+.range_font{
+    display: flex;
+    justify-content: space-between;
+}
+
+.font_px{
+
+}
+
+
+.initial_base{
+
+}

@@ -19,7 +19,14 @@ const Header = (props) => {
                             <ul className={h.nav}>
                                 <li><a href="/fonts">Галерея</a></li>
                                 <li><a href="">Создать новый шрифт</a></li>
-                                <li><a href="">Не забыть вставить кнопку</a></li>
+                                {props.isAuth ?
+                                    <>
+                                        <li><a href="/profile">{props.login}</a></li>
+                                        <button onClick={props.logOut}>Выход</button>
+                                    </>
+                                    :
+                                        <li><a href="/login">Вход/Регистрация</a></li>
+                                    }
                             </ul>
                         </div>
                     </div>

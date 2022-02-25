@@ -1,6 +1,6 @@
 header{
     height: 60px;
-    border-top: 5px solid #2d2d2d;
+    border-top: 5px solid #81d8d0;
 }
 
 .wrapper{
@@ -35,7 +35,6 @@ header{
     padding-left: 15px;
     font-size: 25px;
     font-weight: 700;
-    color: #66C05D;
 }
 .search {
     margin: 0;
@@ -52,7 +51,7 @@ header{
 
 .search input::placeholder {
     color: #939393;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .nav {
@@ -62,25 +61,38 @@ header{
 }
 
 .nav li {
-    padding: 16px 10px;
-    font-weight: 700;
+    padding: 15px 15px;
+    font-weight: 400;
     font-size: 13px;
     background-color: transparent;
     transition: 0.2s ease;
-    cursor: pointer;
 
 }
-.nav li:hover{
-    background-color: #c1c1c1;
-    color: #fff;
+.nav a:after {
+    background-color: #81d8d0; /* Цвет линии при наведении на нее курсора мыши */
+    display: block;
+    content: "";
+    height: 2px; /* Высота линии */
+    width: 0%;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
 }
-
+.nav a:hover:after,
+.nav a:focus:after {
+    width: 100%;
+}
 .nav li a {
     color: #333333;
+    cursor: pointer;
+}
+
+.nav button {
+    background-color: white;
 }
 
 hr{
     border: none;
-    background-color: #c1c1c1;
+    background-color: #d9d9d9;
     height: 1px;
 }
