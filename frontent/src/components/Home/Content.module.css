@@ -1,0 +1,95 @@
+.content {
+
+}
+
+.grid {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    justify-items: center;
+    align-items: center;
+}
+
+.card {
+    margin: 0px;
+    padding: 0px;
+    max-width: 320px;
+    width: 100%;
+
+}
+
+.card_bottom {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    min-height: 300px;
+    transition: 0.2s;
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+
+
+.box:hover {
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+    box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+}
+
+.box_top{
+    margin: 0px;
+
+}
+
+.box_content{
+    margin: 20px 5px 30px 5px;
+}
+
+.box_bottom{
+    width: 100%;
+    left: 0px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+/*-------------- Заполнение карточки --------------*/
+
+.grid_title {
+    font-size: 20px;
+    font-weight: 400;
+}
+.grid_title_made{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #939393;
+}
+
+.box_bottom_block2{
+    margin: 0;
+    padding-right: 10px;
+}
+
+.box_bottom span{
+    padding-left: 10px;
+}
+.grid_views{
+
+}
+.grid_likes :hover{
+    color: #81d8d0;
+}

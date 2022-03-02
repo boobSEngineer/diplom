@@ -1,14 +1,14 @@
-header{
+header {
     height: 60px;
     border-top: 5px solid #81d8d0;
 }
 
-.wrapper{
+.wrapper {
     width: 1200px;
     margin: 0 auto;
 }
 
-.header_top{
+.header_top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,16 +17,18 @@ header{
     width: 100%;
 }
 
-.header_top_block1{
+.header_top_block1 {
     display: flex;
     align-items: center;
     width: 50%;
 }
-.header_top_block2{
+
+.header_top_block2 {
     display: flex;
     width: 50%;
     justify-content: flex-end;
     margin-left: auto;
+    align-items: center;
 }
 
 .logo {
@@ -34,40 +36,69 @@ header{
     padding-right: 30px;
     padding-left: 15px;
     font-size: 25px;
+}
+.logo a{
     font-weight: 700;
+    color: #000000;
 }
+
 .search {
+    display: flex;
+    -webkit-box-flex: 0;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin: 0;
-    width: 400px;
-}
-.search input{
-    width: 100%;
-    border-radius: 7px;
-    border: 1px solid black;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    width: 335px;
     padding-left: 10px;
+}
+
+.search button {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #000000;
+
+}
+
+.search_input{
+    margin: 0px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    padding-left: 10px;
+    caret-color: #5bb1a9;
+}
+
+.search_input input{
+    padding-bottom: 1px;
+    width: 300px;
 }
 
 .search input::placeholder {
     color: #939393;
     font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 .nav {
     margin: 0;
     display: flex;
     justify-content: right;
+    align-items: center;
 }
 
 .nav li {
     padding: 15px 15px;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 12px;
     background-color: transparent;
     transition: 0.2s ease;
 
 }
+
 .nav a:after {
     background-color: #81d8d0; /* Цвет линии при наведении на нее курсора мыши */
     display: block;
@@ -78,10 +109,12 @@ header{
     -moz--transition: width .3s ease-in-out;
     transition: width .3s ease-in-out;
 }
+
 .nav a:hover:after,
 .nav a:focus:after {
     width: 100%;
 }
+
 .nav li a {
     color: #333333;
     cursor: pointer;
@@ -91,8 +124,29 @@ header{
     background-color: white;
 }
 
-hr{
+hr {
     border: none;
     background-color: #d9d9d9;
     height: 1px;
+}
+
+.logout {
+    padding: 0 0 3px 0;
+    margin: 0;
+}
+
+.logout:after {
+    background-color: #81d8d0; /* Цвет линии при наведении на нее курсора мыши */
+    display: block;
+    content: "";
+    height: 2px; /* Высота линии */
+    width: 0%;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+
+.logout:hover:after,
+.logout:focus:after {
+    width: 100%;
 }

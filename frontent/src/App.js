@@ -25,7 +25,6 @@ const App = (props) => {
                 <Route path="/login" render={() => <LoginContainer/>}/>
                 <Route path="/registration" render={() => <RegisterContainer/>}/>
                 <Route path="/profile" render={() => <ProfileContainer/>}/>
-                <Route path="/fonts" render={() => <FontsContainer/>}/>
                 </body>
                 <footer>
                 </footer>
