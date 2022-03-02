@@ -1,11 +1,12 @@
 header {
-    height: 60px;
+    height: 50px;
     border-top: 5px solid #81d8d0;
 }
 
 .wrapper {
     width: 1200px;
     margin: 0 auto;
+
 }
 
 .header_top {
