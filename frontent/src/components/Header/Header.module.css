@@ -67,8 +67,7 @@ header {
 .search_input{
     margin: 0px;
     border: none;
-    border-bottom: 1px solid #000000;
-    padding-left: 10px;
+    border-bottom: 1px solid #767676;
     caret-color: #5bb1a9;
 }
 

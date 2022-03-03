@@ -19,6 +19,96 @@
 
 }
 
+.block1_header h2 {
+    font-size: 2.8rem;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+.block1_content {
+    padding-top: 20px;
+}
+
+.block1_content p {
+    line-height: 30px;
+}
+
+.mid_input {
+    width: 100%;
+    height: 4rem;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 16px 0 0;
+    padding-bottom: 24px;
+    line-height: 24px;
+}
+
+.mid_input input {
+    width: 100%;
+    height: 2rem;
+    display: block;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0;
+    min-width: 150px;
+    color: #000;
+    caret-color: #5bb1a9;
+    border-bottom: 1px solid #767676;
+}
+
+.mid_input input::placeholder {
+    color: #939393;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.71;
+}
+
+.mid_input small {
+    color: #fa5050;
+}
+
+.submit {
+    padding-top: 20px;
+    width: 100%;
+}
+
+.submit button {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 19px 24px;
+    cursor: pointer;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.14;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    min-width: 200px;
+    text-align: center;
+    transition: all 0.2s ease-out;
+}
+
+.submit button:hover {
+    background-color: #81d8d0;
+    color: #333333;
+}
+
+.block1_footer {
+    padding-top: 20px;
+}
+
+.block1_footer p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.71;
+    color: #fa5050;
+}
+
 /*---------------------------block2------------------------------*/
 
 .box_block2 {

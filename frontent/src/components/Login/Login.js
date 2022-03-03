@@ -14,8 +14,8 @@ const Login = (props) => {
     }
 
     const registerOptions = {
-        login: {required: "Логин не может быть пустым"},
-        password: {required: "Пароль не может быть пустым"},
+        login: {required: "* Логин не может быть пустым."},
+        password: {required: "* Пароль не может быть пустым."},
     };
 
 
@@ -27,30 +27,29 @@ const Login = (props) => {
                         <h2>Вход</h2>
                     </div>
                     <div className={s.block1_content}>
+                        <p>Пожалуйста войдите в аккаунт на сайте Toy&Fonts.</p>
                         <form onSubmit={handleSubmit(processForm, handleError)}>
-                            <div className={s.login}>
+                            <div className={s.mid_input}>
                                 <input type="text" name="login" placeholder="Логин"
                                        {...register('login', registerOptions.login)}/>
                                 <small>
                                     {errors?.login && errors.login.message}
                                 </small>
                             </div>
-                            <div className={s.password}>
+                            <div className={s.mid_input}>
                                 <input type="password" name="password" placeholder="Пароль"
                                        {...register('password', registerOptions.password)}/>
                                 <small>
                                     {errors?.password && errors.password.message}
                                 </small>
                             </div>
-                            <div className={s.button}>
+                            <div className={s.submit}>
                                 <button type="submit">Войти</button>
                             </div>
                         </form>
                     </div>
                     <div className={s.block1_footer}>
-                        <div className={s.message}>
-                            <div>{props.status_message}</div>
-                        </div>
+                        <p>{props.status_message}</p>
                     </div>
                 </div>
                 <div className={s.box_block2}>
