@@ -127,8 +127,9 @@
 
 
 .button_circle {
+    display: flex;
+    justify-content: center;
     border-radius: 50%;
-    display: inline-block;
     height: 35px;
     line-height: 35px;
     width: 35px;
@@ -145,17 +146,23 @@
 }
 
 .imge {
-    margin: 0 11px;
-    background-color: white;
+    background-color: transparent;
 }
 
-.button_circle:hover {
+.imge_count {
+    background-color: transparent;
+}
+.imge_count svg{
+    color: #81d8d0;
+}
+
+.button_circle:hover{
+    background-color: #fafafa;
+}
+.button_circle:hover{
     background-color: #fafafa;
 }
 
-.button_circle svg {
-    color: #333333;
-}
 
 
 .initial_base {

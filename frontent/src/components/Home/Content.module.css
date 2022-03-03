@@ -1,8 +1,8 @@
-.content {
+.content {}
 
-}
 
-.grid {
+/*----------------СЕТКА КВАДРАТ------------------*/
+.grid_square {
     width: 100%;
     padding: 0px;
     margin: 0px;
@@ -15,10 +15,32 @@
     align-items: center;
 }
 
-.card {
+.card_square {
     margin: 0px;
-    padding: 0px;
+    padding: 5px 0 0 0;
     max-width: 320px;
+    width: 100%;
+
+}
+/*----------------СЕТКА СТРОКИ------------------*/
+
+.grid_row {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    justify-items: center;
+    align-items: center;
+}
+
+.card_row {
+    margin: 0px;
+    padding: 5px 0 0 0;
+    max-width: 1000px;
     width: 100%;
 
 }

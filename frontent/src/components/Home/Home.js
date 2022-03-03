@@ -10,6 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Home = (props) => {
     const [isShrunk, setShrunk] = useState(false);
+    const [style, setStyle] = useState(false);
 
     useEffect(() => {
         const handler = () => {
@@ -77,21 +78,18 @@ const Home = (props) => {
                     </div>
                     <div className={c.initial_base}>
                         <div className={c.button_circle_padding_2}>
-                            <div className={c.button_circle}>
-                                <button className={c.imge}>
+                            <div className={c.button_circle}  onClick={() => {setStyle(true)}} >
+                                <button className={style? c.imge_count : c.imge} >
                                     <FontAwesomeIcon icon={faBars}/>
                                 </button>
                             </div>
                         </div>
                         <div className={c.button_circle_padding_2}>
-                            <div>
-                                <div className={c.button_circle}>
-                                    <button className={c.imge}>
+                                <div className={c.button_circle} onClick={() => {setStyle(false)}}>
+                                    <button className={style? c.imge : c.imge_count}>
                                         <FontAwesomeIcon icon={faTableCellsLarge}/>
                                     </button>
                                 </div>
-                            </div>
-
                         </div>
                     </div>
                     <div className={c.sort_language}>
@@ -105,11 +103,11 @@ const Home = (props) => {
             </div>
             <div className={c.wrapper}>
                 <div className={b.content}>
-                    <div className={b.grid}>
+                    <div className={style? b.grid_row : b.grid_square}>
                         {
                             props.fonts.map(f =>
                                 <>
-                                    <div className={b.card}>
+                                    <div className={style? b.card_row : b.card_square}>
                                         <div className={b.box}>
                                             <div className={b.box_top}>
                                                 <p className={b.grid_title}>{f.full_name}</p>
