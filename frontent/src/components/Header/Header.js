@@ -30,13 +30,15 @@ const Header = (props) => {
                                 {props.isAuth ?
                                     <>
                                         <li><a href="/profile">{props.login}</a></li>
-                                        <div className={h.logout}><button onClick={props.logOut}>
-                                            <FontAwesomeIcon icon={faArrowRightFromBracket}/>
-                                        </button></div>
+                                        <div className={h.logout}>
+                                            <button onClick={props.logOut}>
+                                                <FontAwesomeIcon icon={faArrowRightFromBracket}/>
+                                            </button>
+                                        </div>
                                     </>
                                     :
                                         <li><a href="/login">Вход/Регистрация</a></li>
-                                    }
+                                }
                             </ul>
                         </div>
                     </div>
