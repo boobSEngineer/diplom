@@ -27,23 +27,23 @@ router.post("/registration", [
         let {login, username, password} = req.body;
         let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}'`);
         if (user !== null) {
-            res.json({success: false, message: `Пользователь с таким логином: ${login} уже существуюет.`}).status(400);
+            res.json({success: false, message: `* Пользователь с таким логином: ${login} уже существуюет.`}).status(400);
         } else {
             let hashPassword = bcrypt.hashSync(password, 7);
             user = await db.none(`INSERT INTO usr(login, password, name) VALUES('${login}', '${hashPassword}', '${username}')`);
-            res.json({success: true, message: "Регистрация прошла успешно."});
+            res.json({success: true, message: "* Регистрация прошла успешно."});
         }
         // let hashPassword =
 
     } catch (e) {
         console.log(e)
-        res.json({success: false, message: "Ошибка регистрации."});
+        res.json({success: false, message: "* Ошибка регистрации."});
     }
 });
 
 router.post("/login", [
     check('login').isEmail(),
-    check('password', "Неверный пароль.").isLength({min: 3, max: 30})
+    check('password', "* Неверный пароль.").isLength({min: 3, max: 30})
 ], async (req, res) => {
     try {
         // let errors = validationResult(req);
@@ -54,12 +54,12 @@ router.post("/login", [
         let {login, password} = req.body;
         let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}'`);
         if (!user) {
-            res.json({success: false, message: `Неверный логин.`});
+            res.json({success: false, message: `* Неверный логин.`});
             return
         }
         let validPassword = bcrypt.compareSync(password, user.password);
         if (!validPassword) {
-            res.json({success: false, message: `Неверный пароль.`})
+            res.json({success: false, message: `* Неверный пароль.`})
         } else {
             let token = generateAccessToken(user.id_user);
             res.cookie('token', token);
