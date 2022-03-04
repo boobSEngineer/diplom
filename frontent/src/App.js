@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {initializedThunkCreate} from "./redux/app-reducer";
 import HomeContainer from "./components/Home/HomeContainer";
 import RegisterContainer from "./components/Login/Registration/RegisterContainer";
+import Footer from "./components/Footer/Footer";
 
 const App = (props) => {
     useEffect(() => {
@@ -26,8 +27,7 @@ const App = (props) => {
                 <Route path="/registration" render={() => <RegisterContainer/>}/>
                 <Route path="/profile" render={() => <ProfileContainer/>}/>
                 </body>
-                <footer>
-                </footer>
+                <Footer/>
             </>
 
         )

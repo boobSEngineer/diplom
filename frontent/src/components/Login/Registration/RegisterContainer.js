@@ -7,7 +7,6 @@ import {getAuth, getInitial, getStatusMessage} from "../../../redux/select/user-
 import {Redirect} from "react-router-dom";
 
 const RegisterContainer = (props) => {
-    debugger
     if (props.isAuth && props.isInitialized) return <Redirect to={"/profile"}/>
     return <Register
         register={props.register}

@@ -1,0 +1,102 @@
+.line {
+    border-top: 8px solid #81d8d0;
+    padding-bottom: 30px;
+    margin-left: 0;
+}
+
+footer {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.box {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.title {
+    padding-top: 40px;
+    color: #939393;
+}
+
+/*----------------------block1-------------------------*/
+
+.wrapp_block1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    flex: 0 0 50%;
+    max-width: 50%;
+    box-sizing: border-box;
+}
+
+.wrapp_block1_header {
+    margin: 0;
+}
+.wrapp_block1_header h2{
+    font-size: 2.8rem;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+.wrapp_block1_content {
+    padding-top: 20px;
+}
+
+.wrapp_block1_content p {
+    line-height: 30px;
+}
+
+/*----------------------block2-------------------------*/
+
+.wrapp_block2 {
+    margin: 0;
+    padding: 0;
+    flex: 0 0 50%;
+    max-width: 50%;
+    box-sizing: border-box;
+}
+
+
+.nav {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav li {
+    padding: 15px 15px;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: transparent;
+    transition: 0.2s ease;
+
+}
+
+.nav a:after {
+    background-color: #81d8d0; /* Цвет линии при наведении на нее курсора мыши */
+    display: block;
+    content: "";
+    height: 2px; /* Высота линии */
+    width: 0%;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+
+.nav a:hover:after,
+.nav a:focus:after {
+    width: 100%;
+}
+
+.nav li a {
+    color: #333333;
+    cursor: pointer;
+}
