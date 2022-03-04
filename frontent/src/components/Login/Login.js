@@ -1,8 +1,6 @@
 import React from "react";
 import s from "./Login.module.css";
 import {useForm} from "react-hook-form";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faArrowRotateLeft} from '@fortawesome/free-solid-svg-icons'
 
 const Login = (props) => {
     const {register, handleSubmit, formState: {errors}} = useForm();

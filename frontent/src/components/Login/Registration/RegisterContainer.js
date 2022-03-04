@@ -3,19 +3,23 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import Register from "./Register";
 import {registerThunkCreate} from "../../../redux/auth-reducer";
-import {getStatusMessage} from "../../../redux/select/user-selector";
+import {getAuth, getInitial, getStatusMessage} from "../../../redux/select/user-selector";
+import {Redirect} from "react-router-dom";
 
 const RegisterContainer = (props) => {
+    debugger
+    if (props.isAuth && props.isInitialized) return <Redirect to={"/profile"}/>
     return <Register
-        id_user={props.id_user}
         register={props.register}
+        status_message={props.status_message}
     />
 }
 
 const MapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
+        isAuth: getAuth(state),
         status_message: getStatusMessage(state),
+        isInitialized: getInitial(state),
     }
 };
 

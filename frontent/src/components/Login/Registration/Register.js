@@ -1,6 +1,7 @@
 import React from "react";
 import {useForm} from "react-hook-form";
-import s from "./Register.module.css";
+import s from "../Login.module.css";
+import g from "./Register.module.css"
 
 const Register = (props) => {
     const {register, handleSubmit, formState: {errors}} = useForm({mode: "onBlur"});
@@ -11,44 +12,54 @@ const Register = (props) => {
     };
 
     const registerOptions = {
-        login: {required: "Логин не может быть пустым"},
-        username: {required: "Имя пользователя не может быть пустым"},
-        password: {required: "Пароль не может быть пустым"},
+        login: {required: "* Логин не может быть пустым."},
+        username: {required: "* Имя пользователя не может быть пустым."},
+        password: {required: "* Пароль не может быть пустым."},
     };
 
     return (
-        <div className={s.container}>
+        <div className={s.wrapper}>
             <div className={s.box}>
-                <h3>Регистрация</h3>
-                <form onSubmit={handleSubmit(processForm, handleError)}>
-                    <div className={s.login_wrapper}>
-                        <p>Login</p>
-                        <input type="text" name="login" placeholder="login"
-                               {...register('login', registerOptions.login)}/>
-                        <small className="text-danger">
-                            {errors?.login && errors.login.message}
-                        </small>
+                <div className={g.box_block1}>
+                    <div className={s.block1_header}>
+                        <h2>Регистрация</h2>
                     </div>
-                    <div className={s.username_wrapper}>
-                        <p>Username</p>
-                        <input type="text" name="username" placeholder="username"
-                               {...register('username', registerOptions.username)}/>
-                        <small className="text-danger">
-                            {errors?.username && errors.username.message}
-                        </small>
+                    <div className={s.block1_content}>
+                        <form onSubmit={handleSubmit(processForm, handleError)}>
+                            <div className={s.mid_input}>
+                                <input type="text" name="login" placeholder="login"
+                                       {...register('login', registerOptions.login)}/>
+                                <small>
+                                    {errors?.login && errors.login.message}
+                                </small>
+                            </div>
+                            <div className={s.mid_input}>
+                                <input type="text" name="username" placeholder="username"
+                                       {...register('username', registerOptions.username)}/>
+                                <small>
+                                    {errors?.username && errors.username.message}
+                                </small>
+                            </div>
+                            <div className={s.mid_input}>
+                                <input type="password" name="password" placeholder="password"
+                                       {...register('password', registerOptions.password)}/>
+                                <small>
+                                    {errors?.password && errors.password.message}
+                                </small>
+                            </div>
+                            <div className={s.submit}>
+                                <button type="submit">Submit</button>
+                            </div>
+                        </form>
                     </div>
-                    <div className={s.password_wrapper}>
-                        <p>Password</p>
-                        <input type="password" name="password" placeholder="password"
-                               {...register('password', registerOptions.password)}/>
-                        <small className="text-danger">
-                            {errors?.password && errors.password.message}
-                        </small>
+                    <div className={s.block1_footer}>
+                        <p>{props.status_message}</p>
                     </div>
-                    <div className={s.button}>
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
+                </div>
+                <div className={g.box_block2}>
+
+                </div>
+
             </div>
         </div>
     )

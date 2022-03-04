@@ -3,5 +3,13 @@
     margin: 0 auto;
 }
 
-.container {
+.box_block1{
+    margin: 0;
+    padding: 0 100px;
+    flex: 0 0 50%;
+    max-width: 50%;
+    box-sizing: border-box;
+}
+
+.box_block2 {
 }
