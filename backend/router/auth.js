@@ -25,12 +25,15 @@ router.post("/registration", [
         //     res.status(400).json({errors});
         // }
         let {login, username, password} = req.body;
-        let user = await db.oneOrNone(`SELECT id_user, login, name, password FROM usr WHERE login = '${login}'`);
+        let user = await db.oneOrNone(`SELECT * FROM usr WHERE login = '${login}'`);
         if (user !== null) {
             res.json({success: false, message: `* Пользователь с таким логином: ${login} уже существуюет.`}).status(400);
         } else {
             let hashPassword = bcrypt.hashSync(password, 7);
-            user = await db.none(`INSERT INTO usr(login, password, name) VALUES('${login}', '${hashPassword}', '${username}')`);
+            await db.none(`INSERT INTO usr(login, password, name) VALUES('${login}', '${hashPassword}', '${username}')`);
+            let user = await db.one(`SELECT * FROM usr WHERE login = '${login}'`);
+            let token = generateAccessToken(user.id_user);
+            res.cookie('token', token);
             res.json({success: true, message: "* Регистрация прошла успешно."});
         }
         // let hashPassword =
