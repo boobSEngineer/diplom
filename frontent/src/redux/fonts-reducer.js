@@ -42,7 +42,7 @@ export const RequestFontsThunkCreate = () => {
 
 export const RequestCurrentFontsThunkCreate = (id_user) => {
     return (dispatch) => {
-        fontsAPI.getCurrentFont(id_user)
+        fontsAPI.getCurrentFonts(id_user)
             .then(data => {
                 if (data != null) {
                     dispatch(fontSetCreate(data))

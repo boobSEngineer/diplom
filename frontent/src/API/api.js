@@ -16,7 +16,7 @@ export const fontsAPI = {
                 return response.data
             })
     },
-    getCurrentFont(id_user) {
+    getCurrentFonts(id_user) {
         return instance.post(`fonts/current_fonts`, {id_user})
             .then(response => {
                 return response.data
