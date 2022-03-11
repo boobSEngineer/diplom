@@ -37,7 +37,7 @@ const Header = (props) => {
                                         </div>
                                     </>
                                     :
-                                        <li><a href="/login">Вход/Регистрация</a></li>
+                                    <li><a href="/login">Вход/Регистрация</a></li>
                                 }
                             </ul>
                         </div>
