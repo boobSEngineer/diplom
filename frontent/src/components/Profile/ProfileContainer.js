@@ -5,6 +5,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {getFonts} from "../../redux/select/fonts-selector";
 import {RequestCurrentFontsThunkCreate} from "../../redux/fonts-reducer";
+import {logoutThunkCreate} from "../../redux/auth-reducer";
 
 const ProfileContainer = (props) => {
     useEffect(() => {
@@ -17,6 +18,7 @@ const ProfileContainer = (props) => {
         id_user={props.id_user}
         setFonts={props.setFonts}
         fonts={props.fonts}
+        logOut ={props.logOut}
 
     />
 }
@@ -35,7 +37,8 @@ const MapStateToProps = (state) => {
 export default compose(
     connect(MapStateToProps,
         {
-            RequestCurrentFontsThunkCreate
+            RequestCurrentFontsThunkCreate,
+            logOut: logoutThunkCreate,
         }),
 )(ProfileContainer)
 
