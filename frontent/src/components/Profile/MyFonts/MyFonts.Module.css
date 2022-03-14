@@ -1,0 +1,85 @@
+.content_box {
+    height: 500px;
+    max-width: 830px;
+    padding: 0;
+    margin-left: 15px ;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.content_box::-webkit-scrollbar {
+    width: 3px;
+    height: 8px;
+    background-color: #f1f1f1; /* or add it to the track */
+}
+
+/* Add a thumb */
+.content_box::-webkit-scrollbar-thumb {
+    background: #81d8d0;
+}
+
+.content_column {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+}
+
+
+.settings_box {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 15px 0;
+
+}
+
+.title_font{
+    margin: 0;
+    max-width: 300px;
+    overflow-wrap: break-word;
+}
+
+.title_font h3 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.font_by {
+    display: inline-block;
+    padding-top: 10px;
+    padding-right: 10px;
+    color: #939393;
+    overflow-wrap: break-word;
+    font-size: 12px;
+}
+
+
+.font_link{
+    margin-right: 20px;
+    text-decoration: none;
+}
+.font_link a{
+    color: #3f3f3f;
+}
+.font_link a:hover{
+    color: #81d8d0;
+}
+/*------------------------------------панель сверху, скопировано с panel control*/
+.sort_fonts {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    border: 0;
+    border-radius: 5px;
+}
