@@ -1,16 +1,20 @@
 import React, {useEffect} from "react";
 import Profile from "./Profile";
-import {getLogin, getName, getStatusMessage, getUid} from "../../redux/select/user-selector";
+import {getLogin, getName, getStatusMessage, getUid} from "../../../../redux/select/user-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {getFonts} from "../../redux/select/fonts-selector";
-import {RequestCurrentFontsThunkCreate} from "../../redux/fonts-reducer";
-import {logoutThunkCreate} from "../../redux/auth-reducer";
+import {getFontsById} from "../../../../redux/select/fonts-selector";
+import {
+    logoutThunkCreate,
+    updateCurrentUserDataThunkCreate,
+} from "../../../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import {getInitial} from "../../../../redux/select/app-selector";
 
 const ProfileContainer = (props) => {
     useEffect(() => {
-        props.RequestCurrentFontsThunkCreate(props.id_user)
-    }, [props.id_user]);
+        props.updateCurrentUser()
+    }, []);
 
     return <Profile
         username={props.username}
@@ -29,16 +33,17 @@ const MapStateToProps = (state) => {
         login: getLogin(state),
         id_user: getUid(state),
         isAuth: state.auth.isAuth,
-        fonts:getFonts(state),
+        fonts:getFontsById(state),
         status_message: getStatusMessage(state),
+        isInitialized: getInitial(state),
     }
 };
 
 export default compose(
     connect(MapStateToProps,
         {
-            RequestCurrentFontsThunkCreate,
             logOut: logoutThunkCreate,
+            updateCurrentUser:updateCurrentUserDataThunkCreate
         }),
 )(ProfileContainer)
 

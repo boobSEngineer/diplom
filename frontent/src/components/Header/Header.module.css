@@ -3,10 +3,16 @@ header {
     border-top: 5px solid #81d8d0;
 }
 
-.wrapper {
-    width: 1200px;
-    margin: 0 auto;
+.exp{
+    display:flex;
+    justify-content:center;
+}
 
+.wrapper {
+    width: 100%;
+    min-width: 1200px;
+    padding: 0 20px 0 50px;
+    margin: 0;
 }
 
 .header_top {
@@ -20,8 +26,12 @@ header {
 
 .header_top_block1 {
     display: flex;
-    align-items: center;
     width: 50%;
+    min-width: 250px;
+    margin: 0;
+    height: 44px;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .header_top_block2 {
@@ -33,6 +43,11 @@ header {
 }
 
 .logo {
+    margin: 0;
+    padding: 0;
+}
+
+.logo p{
     margin: 0;
     padding-right: 30px;
     font-size: 25px;
@@ -90,7 +105,7 @@ header {
 }
 
 .nav li {
-    padding: 15px 15px;
+    padding: 15px;
     font-weight: 400;
     font-size: 12px;
     background-color: transparent;
@@ -130,7 +145,7 @@ hr {
 }
 
 .logout {
-    padding: 0 0 3px 0;
+    padding: 0 0 3px 15px;
     margin: 0;
 }
 
@@ -149,3 +164,42 @@ hr {
 .logout:focus:after {
     width: 100%;
 }
+/*-----------------------------------------------------------------------dropdown*/
+.desktop_nav > li {
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+.desktop_nav li ul {
+    position: absolute;
+    top: 100%; /* the height of the main nav */
+    background: #ffffff;
+    border: 1px solid #d9dbdb;
+    list-style: none;
+    visibility: hidden;
+    right: -30px;
+    opacity: 0;
+    -webkit-transition-property: opacity, visibility;
+}
+
+.desktop_nav ul > li {
+    width: 200px;
+    padding: 1em 2em;
+}
+
+.desktop_nav ul > li:hover {
+    background: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+/* Acts on the hovered element, and selects the ul it contains */
+.desktop_nav > li:hover > ul {
+    visibility: visible;
+    z-index: 1;
+    opacity: 1;
+}
+

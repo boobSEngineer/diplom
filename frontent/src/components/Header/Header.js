@@ -5,7 +5,6 @@ import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Header = (props) => {
-
     return (
         <>
             <header>
@@ -29,7 +28,18 @@ const Header = (props) => {
                                 <li><a href="">Создать новый шрифт</a></li>
                                 {props.isAuth ?
                                     <>
-                                        <li><a href="/profile">{props.login}</a></li>
+                                        <ul className={h.desktop_nav}>
+                                            <li>
+                                                <a href={`/profile/${props.myId}`}>{props.username}</a>
+                                                <ul>
+                                                    <li><a href="/panel_control">Панель управления</a></li>
+                                                    <li><a href="/profile_settings"> Детали профиля</a></li>
+                                                    <li><a href="/fonts_upload">Загрузить шрифт</a></li>
+                                                    <li><a href="/my_fonts">Мои шрифты</a></li>
+                                                    <li><a href="/liked">Понравилось</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
                                         <div className={h.logout}>
                                             <button onClick={props.logOut}>
                                                 <FontAwesomeIcon icon={faArrowRightFromBracket}/>
@@ -40,6 +50,8 @@ const Header = (props) => {
                                     <li><a href="/login">Вход/Регистрация</a></li>
                                 }
                             </ul>
+
+
                         </div>
                     </div>
                 </div>

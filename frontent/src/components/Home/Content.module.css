@@ -1,4 +1,5 @@
-.content {}
+.content {
+}
 
 
 /*----------------СЕТКА КВАДРАТ------------------*/
@@ -53,7 +54,7 @@
 .box {
     min-height: 300px;
     transition: 0.2s;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #e8e8e8;
     border-radius: 5px;
     overflow-wrap: break-word;

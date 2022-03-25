@@ -1,4 +1,4 @@
-import {updateUserDataThunkCreate} from "./auth-reducer";
+import {updateCurrentUserDataThunkCreate} from "./auth-reducer";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS'
 
@@ -26,7 +26,7 @@ export const initializedSuccessCreate = () => {
 
 export const initializedThunkCreate = () => {
     return (dispatch) => {
-        let promise = dispatch(updateUserDataThunkCreate())
+        let promise = dispatch(updateCurrentUserDataThunkCreate())
         Promise.all([promise])
             .then(() => {
                 dispatch(initializedSuccessCreate());

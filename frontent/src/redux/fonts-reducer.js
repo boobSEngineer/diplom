@@ -1,12 +1,17 @@
 import {fontsAPI} from "../API/api";
+import {fileAPI} from "../API/api2";
+import {updateCurrentUserDataThunkCreate} from "./auth-reducer";
 
 const SET_FONTS = 'SET-FONTS'
 
+const SET_STATUS_MESSAGE_AND_SUCCESS = 'SET-STATUS-MESSAGE-AND-SUCCESS';
 
 const initialState = {
     fonts: [],
     pageSize: 100,
     totalFontsCount: 0,
+    status_message: null,
+    status_success: null,
     page: 1,
 };
 
@@ -18,38 +23,79 @@ const fontsReducer = (state = initialState, action) => {
                 fonts: [...action.fonts]
             }
         }
-
+        case SET_STATUS_MESSAGE_AND_SUCCESS: {
+            return {
+                ...state,
+                status_message: action.status_message,
+                status_success: action.status_success,
+            }
+        }
         default:
             return state
     }
 
 }
 
-export const fontSetCreate = (fonts) => {
+export const setFontsCreate = (fonts) => {
     return {type: SET_FONTS, fonts}
 }
+
+export const setStatusMessageAndSuccessCreate = (status_message, status_success) => {
+    return {type: SET_STATUS_MESSAGE_AND_SUCCESS, status_message, status_success}
+}
+
 
 export const RequestFontsThunkCreate = () => {
     return (dispatch) => {
         fontsAPI.getFonts()
             .then(data => {
                 if (data != null) {
-                    dispatch(fontSetCreate(data))
+                    dispatch(setFontsCreate(data))
                 }
             })
     }
 }
 
-export const RequestCurrentFontsThunkCreate = (id_user) => {
+export const RequestFontsByIdThunkCreate = (id_user) => {
     return (dispatch) => {
-        fontsAPI.getCurrentFonts(id_user)
-            .then(data => {
-                if (data != null) {
-                    dispatch(fontSetCreate(data))
-                }
-            })
+        if (id_user != null) {
+            fontsAPI.getCurrentFonts(id_user)
+                .then(data => {
+                    if (data != null) {
+                        dispatch(setFontsCreate(data))
+                    }
+                })
+        } else {
+            dispatch(setFontsCreate([]))
+        }
     }
 }
+
+
+export const uploadFontsThunkCreate = (data) => {
+    return (dispatch) => {
+        fileAPI.uploadFile(data)
+            .then(data => {
+                dispatch(setStatusMessageAndSuccessCreate(data.message, data.success));
+            })
+    }
+
+};
+
+export const deleteFontByIdThunkCreate = (id_font, id_user) => {
+    return (dispatch) => {
+        fontsAPI.deleteFontById(id_font)
+            .then(data => {
+                if (id_user != null) {
+                    dispatch(RequestFontsByIdThunkCreate(id_user))
+                } else {
+                    console.error("delete_font by id got null current user id")
+                }
+
+            })
+    }
+
+};
 
 
 export default fontsReducer;

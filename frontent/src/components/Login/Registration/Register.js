@@ -48,7 +48,7 @@ const Register = (props) => {
                                 </small>
                             </div>
                             <div className={s.submit}>
-                                <button type="submit">Submit</button>
+                                <button type="submit">Зарегистриоваться</button>
                             </div>
                         </form>
                     </div>

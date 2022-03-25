@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Home from "./Home";
-import {getFonts} from "../../redux/select/fonts-selector";
+import {getFontsById} from "../../redux/select/fonts-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {RequestFontsThunkCreate} from "../../redux/fonts-reducer";
@@ -15,7 +15,7 @@ const HomeContainer = (props) => {
 
 const MapStateToProps = (state) => {
     return {
-        fonts: getFonts(state),
+        fonts: getFontsById(state),
     }
 };
 

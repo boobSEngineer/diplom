@@ -2,7 +2,7 @@
     height: 500px;
     max-width: 830px;
     padding: 0;
-    margin-left: 15px ;
+    margin-left:30px;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -66,6 +66,8 @@
 
 
 .font_link{
+    display: flex;
+    flex-direction: column;
     margin-right: 20px;
     text-decoration: none;
 }

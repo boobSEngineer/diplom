@@ -17,17 +17,29 @@ export const fontsAPI = {
             })
     },
     getCurrentFonts(id_user) {
-        return instance.post(`fonts/current_fonts`, {id_user})
+        return instance.get(`fonts/user_fonts/${id_user}`)
             .then(response => {
                 return response.data
             })
+    },
+    deleteFontById(id_font) {
+        return instance.post(`fonts/delete_font`, {id_font})
+            .then(res => {
+                return res.data
+            })
     }
-
 }
+
 
 export const userAPI = {
     getCurrentUser() {
         return instance.get(`get/me`)
+            .then(response => {
+                return response.data
+            })
+    },
+    getUser(id_user) {
+        return instance.get(`get/profile/${id_user}`)
             .then(response => {
                 return response.data
             })

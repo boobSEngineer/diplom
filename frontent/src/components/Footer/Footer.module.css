@@ -7,21 +7,23 @@
 footer {
     padding-top: 40px;
     padding-bottom: 20px;
+
 }
 
 .wrapper {
-    width: 1200px;
+    width: 100%;
+    min-width: 1200px;
     max-height: 250px;
 }
 
 .box {
     display: flex;
     margin: 0;
-    padding: 0;
+    padding: 0 50px;
     width: 100%;
 }
 .title {
-    padding-top: 40px;
+    padding: 40px 50px;
     color: #939393;
 }
 

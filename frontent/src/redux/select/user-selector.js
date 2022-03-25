@@ -19,6 +19,16 @@ export const getStatusMessage = (state) => {
     return state.auth.status_message;
 }
 
-export const getInitial = (state) => {
-    return state.app.initialized;
+/*----------------------------------------------ByID-----------------------------------------------*/
+
+export const getNameById= (state) => {
+    return state.userId.name;
 }
+export const getLoginById = (state) => {
+    return state.userId.login;
+}
+export const getUserIdById= (state) => {
+    return state.userId.id_user;
+}
+
+

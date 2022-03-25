@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import {RequestFontsThunkCreate} from "../../redux/fonts-reducer";
+import {RequestFontsByIdThunkCreate, RequestFontsThunkCreate} from "../../redux/fonts-reducer";
 import Font from "./Font";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {getFonts} from "../../redux/select/fonts-selector";
+import {getFontsById} from "../../redux/select/fonts-selector";
 
 const FontsContainer = (props) => {
     useEffect(() => {
@@ -16,11 +16,11 @@ const FontsContainer = (props) => {
 
 const MapStateToProps = (state) => {
     return {
-        fonts: getFonts(state),
+        fonts: getFontsById(state),
     }
 };
 
 export default compose(
     connect(MapStateToProps,
-        { requestFonts:RequestFontsThunkCreate}),
+        { requestFontsById:RequestFontsByIdThunkCreate}),
 )(FontsContainer)

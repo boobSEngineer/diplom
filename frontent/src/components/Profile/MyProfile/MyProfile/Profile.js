@@ -1,7 +1,6 @@
 import React from "react";
-import FormContainer from "../Form/FormContainer";
 import p from "./Profile.module.css"
-import {NavLink} from "react-router-dom";
+import NavbarProfileContainer from "../NavbarProfile/NavbarProfileContainer";
 
 const Profile = (props) => {
 
@@ -9,22 +8,8 @@ const Profile = (props) => {
         <>
             <div className={p.wrapper}>
                 <div className={p.box}>
-                    <div className={p.sidebar_block}>
-                        <div className={p.sidebar}>
-                            <div className={p.sidebar_block_title}>
-                                Мой аккаунт
-                            </div>
-                            <div className={p.sidebar_nav} >
-                                <ul>
-                                    <li><NavLink to="/profile" className={p.sidebar_nav_link} activeClassName={p.active}>Панель управления</NavLink></li>
-                                    <li><NavLink to="/profile_settings" className={p.sidebar_nav_link} activeClassName={p.active}>Детали профиля</NavLink></li>
-                                    <li><NavLink to="/fonts_upload" className={p.sidebar_nav_link} activeClassName={p.active}>Загрузить шрифт</NavLink></li>
-                                    <li><NavLink to="/my_fonts" className={p.sidebar_nav_link} activeClassName={p.active}>Мои шрифты</NavLink></li>
-                                    <li><NavLink to="/liked" className={p.sidebar_nav_link} activeClassName={p.active}>Понравилось</NavLink></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
+                    <NavbarProfileContainer/>
 
                     <div className={p.content_block}>
                         <div className={p.content}>
