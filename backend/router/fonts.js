@@ -9,13 +9,13 @@ router.get("/gallery", async (req, res) => {
     res.json(fonts);
 });
 
-router.get("/user_fonts/:id_user",authorize(), async (req, res) => {
+router.get("/user_fonts/:id_user", async (req, res) => {
     let {id_user} = req.params;
     let fonts = await db.any(`SELECT * FROM font WHERE id_user = ${id_user}`);
     res.json(fonts);
 });
 
-router.post("/delete_font",authorize(), async (req, res) => {
+router.post("/delete_font", authorize(), async (req, res) => {
     try {
         let {id_font} = req.body;
         let {id_user} = req.user;
@@ -26,6 +26,17 @@ router.post("/delete_font",authorize(), async (req, res) => {
         res.json({success: false, message: "Delete not working"});
     }
 
-})
+});
+
+router.get("/font/:id_font",async (req, res) => {
+    let id_font = req.params.id_font;
+    let font = await db.oneOrNone(`SELECT * FROM font WHERE id_font = '${id_font}'`);
+    if (!font) {
+        res.json({success: false, message: `* Шрифт отсутствует.`});
+        return
+    }
+    res.json(font);
+
+});
 
 export default router;
