@@ -1,3 +1,6 @@
+export const getCurrentFont = (state) => {
+    return state.fontsWork.current_font;
+}
 
 export const getFontsById = (state) => {
     return state.fontsWork.fonts;
