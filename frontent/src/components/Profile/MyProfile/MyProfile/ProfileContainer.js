@@ -8,7 +8,6 @@ import {
     logoutThunkCreate,
     updateCurrentUserDataThunkCreate,
 } from "../../../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
 import {getInitial} from "../../../../redux/select/app-selector";
 
 const ProfileContainer = (props) => {
