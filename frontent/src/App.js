@@ -15,6 +15,7 @@ import LikedContainer from "./components/Profile/MyProfile/Liked/LikedContainer"
 import ProfileSettingsContainer from "./components/Profile/MyProfile/ProfileSettings/ProfileSettingsContainer";
 import UploadFontsContainer from "./components/Profile/MyProfile/UploadFonts/UploadFontsContainer";
 import ProfileInfoContainer from "./components/Profile/ProfileCurrentById/ProfileInfoContainer";
+import FontContainer from "./components/FontPage/FontContainer";
 
 const App = (props) => {
     useEffect(() => {
@@ -29,7 +30,10 @@ const App = (props) => {
                 <Route path="/" exact render={() => <HomeContainer/>}/>
                 <Route path="/login" render={() => <LoginContainer/>}/>
                 <Route path="/registration" render={() => <RegisterContainer/>}/>
-                <Route path="/profile/:id_user?" render={(props) => <ProfileInfoContainer match={props.match}/>}/>
+                <Route path="/profile/:id_user?" render={(props) =>
+                    <ProfileInfoContainer match={props.match}/>}/>
+                <Route path="/font/:id_font?" render={(props) =>
+                    <FontContainer match={props.match}/>}/>
                 <Route path="/panel_control" render={() => <ProfileContainer/>}/>
                 <Route path="/profile_settings" render={() => <ProfileSettingsContainer/>}/>
                 <Route path="/my_fonts" render={() => <MyFontsContainer/>}/>
