@@ -1,6 +1,11 @@
 .wrapper {
-    width: 100%;
-    min-width: 1100px;
+    max-width: 100%;
+    margin: 0;
+}
+
+.wrapper_panel {
+    max-width: 100%;
+    width: 1100px;
     margin: 0 auto;
 }
 
@@ -20,14 +25,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0px;
+    padding: 12px 0px;
     background-color: white;
 }
 
+.container {
+    padding: 0;
+    margin: 0 50px;
+}
 
 .sort_fonts {
-    padding: 5px 10px;
-    margin: 0;
     line-height: 1;
     border: 0;
     border-radius: 5px;
@@ -63,8 +70,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 10px;
-    margin: 0;
 }
 
 .sentence_font input {
@@ -86,13 +91,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
-    margin: 0;
 }
 
 .range {
     -webkit-appearance: none;
     width: 100%;
+    min-width: 50px;
     border-radius: 8px;
     height: 7px;
     border: 1px solid #bdc3c7;
@@ -137,13 +141,9 @@
 }
 
 .button_circle_padding_1{
-    margin: 0;
-    padding: 0 5px;
 }
 
 .button_circle_padding_2{
-    margin: 0;
-    padding: 0 5px;
 }
 
 .imge {
@@ -170,13 +170,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    padding: 0;
 }
 
 .sort_language {
-    padding: 5px 10px;
-    margin: 0;
 }
 
 .sort_language select {
