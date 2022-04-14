@@ -1,4 +1,5 @@
 .content {
+    padding-top: 3px;
 }
 
 
@@ -110,7 +111,7 @@
 .box_bottom span{
     padding-left: 10px;
 }
-.grid_views{
+.grid_likes_not_auth{
 
 }
 .grid_likes :hover{
