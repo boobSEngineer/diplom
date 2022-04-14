@@ -22,12 +22,48 @@ export const fontsAPI = {
                 return response.data
             })
     },
+    getCurrentFont(id_font) {
+        return instance.get(`fonts/font/${id_font}`)
+            .then(response => {
+                return response.data
+            })
+    },
+
     deleteFontById(id_font) {
         return instance.post(`fonts/delete_font`, {id_font})
             .then(res => {
                 return res.data
             })
-    }
+    },
+
+    viewFont(id_font) {
+        return instance.post(`views/view`, {id_font})
+            .then(res => {
+                return res.data
+            })
+    },
+
+    sortByLikes() {
+        return instance.get(`sort/by_likes`)
+            .then(response => {
+                return response.data
+            })
+    },
+
+    sortByViews() {
+        return instance.get(`sort/by_views`)
+            .then(response => {
+                return response.data
+            })
+    },
+
+    sortByData() {
+        return instance.get(`sort/by_data`)
+            .then(response => {
+                return response.data
+            })
+    },
+
 }
 
 
