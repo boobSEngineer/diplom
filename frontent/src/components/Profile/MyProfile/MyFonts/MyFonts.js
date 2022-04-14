@@ -2,7 +2,7 @@ import React from "react";
 import p from "../MyProfile/Profile.module.css";
 import m from "./MyFonts.Module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faEye, faHeart, faXmark} from "@fortawesome/free-solid-svg-icons";
 import c from "../../../Home/PanelControl.module.css";
 import NavbarProfileContainer from "../NavbarProfile/NavbarProfileContainer";
 
@@ -41,9 +41,8 @@ const MyFonts = (props) => {
                                             <span className={m.font_by}><FontAwesomeIcon icon={faHeart}/> 000000</span>
                                         </div>
                                         <div className={m.font_link}>
-                                            <p>{f.id_font}</p>
+                                            <a onClick={() => {props.deleteFontById(f.id_font, props.id_user)}}><FontAwesomeIcon icon={faXmark}/></a>
                                             <a href={`http://localhost:4000/file/fonts/${f.path}`}>Скачать</a>
-                                            <a onClick={() => {props.deleteFontById(f.id_font, props.id_user)}}>Удалить</a>
                                         </div>
                                     </div>
                                 )}
