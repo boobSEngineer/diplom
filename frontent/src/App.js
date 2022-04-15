@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate, useSearchParams} from "react-router-dom";
 import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/MyProfile/MyProfile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -18,6 +18,19 @@ import ProfileInfoContainer from "./components/Profile/ProfileCurrentById/Profil
 import FontContainer from "./components/FontPage/FontContainer";
 
 const App = (props) => {
+    let new_query = Object.fromEntries([...useSearchParams()[0]]);
+    const navigate = useNavigate();
+
+    let updateQuery = (update_params) => {
+        new_query = {...new_query, ...update_params}
+        let new_string = Object.entries(new_query)
+            .map(c => {
+                return c[0] + "=" + c[1]
+            })
+            .join("&")
+        navigate("?" + new_string)
+    }
+
     useEffect(() => {
         props.initializeApp()
     }, []);
@@ -25,10 +38,10 @@ const App = (props) => {
     if (props.initialized) {
         return (
             <>
-                <HeaderContainer/>
+                <HeaderContainer updateQuery={updateQuery}/>
                 <body className="content">
                 <Routes>
-                    <Route path="/" exact element={<HomeContainer/>}/>
+                    <Route path="/" exact element={<HomeContainer updateQuery={updateQuery}/>}/>
                     <Route path="/login" element={<LoginContainer/>}/>
                     <Route path="/registration" element={<RegisterContainer/>}/>
                     <Route path="/profile">

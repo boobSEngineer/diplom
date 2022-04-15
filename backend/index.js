@@ -4,7 +4,6 @@ import likeRouter from './router/likes.js';
 import viewRouter from './router/views.js';
 import authRouter from './router/auth.js';
 import sortRouter from './router/sort.js';
-import searchRouter from './router/search.js';
 import getRouter from './router/get.js';
 import uploadRouter from './router/upload.js';
 import cors from 'cors';
@@ -40,7 +39,6 @@ app.use("/file/fonts", express.static(path.join(__dirname, "/storage/upload/font
 app.use("/api/fonts", fontRouter);
 app.use("/api/likes", likeRouter);
 app.use("/api/views", viewRouter);
-app.use("/api/search", searchRouter);
 app.use("/api/sort", sortRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/get", getRouter);

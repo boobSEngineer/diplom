@@ -52,18 +52,16 @@ const Home = (props) => {
         return () => window.removeEventListener("scroll", handler);
     }, []);
 
-    const navigate = useNavigate();
-
     function switchSort(variant) {
         switch (variant) {
             case "All":
-                return navigate("/");
+                return props.updateQuery({sort:"/"});
             case "1":
-                return navigate("/?sort=views");
+                return props.updateQuery({sort:"views"});
             case "2":
-                return navigate("/?sort=likes");
+                return props.updateQuery({sort:"likes"});
             case "3":
-                return navigate("/?sort=data");
+                return props.updateQuery({sort:"data"});
             default:
                 return "";
         }

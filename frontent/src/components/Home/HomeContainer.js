@@ -10,16 +10,18 @@ import {getAuth} from "../../redux/select/user-selector";
 import {useSearchParams} from "react-router-dom";
 
 const HomeContainer = (props) => {
-    const query = Object.fromEntries([...useSearchParams()[0]]); // thanks stackoverflow
+    let query = Object.fromEntries([...useSearchParams()[0]]); // thanks stackoverflow
+
     useEffect(() => {
         props.selectFontsBy(query)
-    }, [query])
+    }, [window.location.search]);
 
     return <Home
         fonts={props.fonts}
         isAuth={props.isAuth}
         selectFontsBy={props.selectFontsBy}
         requestFonts={props.requestFonts}
+        updateQuery={props.updateQuery}
     />
 }
 
@@ -34,6 +36,6 @@ export default compose(
     connect(MapStateToProps,
         {
             requestFonts: RequestFontsThunkCreate,
-            selectFontsBy:selectFontsByThunkCreate
+            selectFontsBy: selectFontsByThunkCreate,
         }),
 )(HomeContainer)

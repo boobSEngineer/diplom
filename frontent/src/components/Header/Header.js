@@ -10,9 +10,9 @@ const Header = (props) => {
     const {register, handleSubmit} = useForm({mode: "onBlur"});
     const handleError = (errors) => {
     };
+
     const processForm = (l) => {
-        debugger
-        props.searchFonts(l.search)
+        props.updateQuery({search: l.search_string});
     };
 
     return (
@@ -26,8 +26,10 @@ const Header = (props) => {
                             </div>
                             <form className={h.search} onSubmit={handleSubmit(processForm, handleError)}>
                                 <div className={h.search_input}>
-                                    <input placeholder="Найти шрифт..." type="text" name="search"
-                                           {...register('search')}/>
+                                    <input placeholder="Найти шрифт..." type="text" name="search_string"
+                                           {...register('search_string',{onChange: (e) => {
+                                               props.updateQuery({search:e.target.value})
+                                               }})}/>
                                 </div>
                                 <button type="submit">
                                     <FontAwesomeIcon icon={faMagnifyingGlass}/>
