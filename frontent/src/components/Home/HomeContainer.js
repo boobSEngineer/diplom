@@ -4,23 +4,21 @@ import {getFontsById} from "../../redux/select/fonts-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {
-    RequestFontsThunkCreate,
-    SortFontsByDataThunkCreate,
-    SortFontsByLikeThunkCreate, SortFontsByViewsThunkCreate
+    RequestFontsThunkCreate, selectFontsByThunkCreate,
 } from "../../redux/fonts-reducer";
 import {getAuth} from "../../redux/select/user-selector";
+import {useSearchParams} from "react-router-dom";
 
 const HomeContainer = (props) => {
+    const query = Object.fromEntries([...useSearchParams()[0]]); // thanks stackoverflow
     useEffect(() => {
-        props.requestFonts()
-    }, []);
+        props.selectFontsBy(query)
+    }, [query])
 
     return <Home
         fonts={props.fonts}
         isAuth={props.isAuth}
-        sortByLikes={props.sortByLikes}
-        sortByData={props.sortByData}
-        sortByViews={props.sortByViews}
+        selectFontsBy={props.selectFontsBy}
         requestFonts={props.requestFonts}
     />
 }
@@ -36,8 +34,6 @@ export default compose(
     connect(MapStateToProps,
         {
             requestFonts: RequestFontsThunkCreate,
-            sortByLikes: SortFontsByLikeThunkCreate,
-            sortByData: SortFontsByDataThunkCreate,
-            sortByViews: SortFontsByViewsThunkCreate
+            selectFontsBy:selectFontsByThunkCreate
         }),
 )(HomeContainer)

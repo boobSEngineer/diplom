@@ -3,8 +3,18 @@ import h from "./Header.module.css";
 import {faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useForm} from "react-hook-form";
+
 
 const Header = (props) => {
+    const {register, handleSubmit} = useForm({mode: "onBlur"});
+    const handleError = (errors) => {
+    };
+    const processForm = (l) => {
+        debugger
+        props.searchFonts(l.search)
+    };
+
     return (
         <>
             <header>
@@ -14,11 +24,12 @@ const Header = (props) => {
                             <div className={h.logo}>
                                 <p><a href="/">Toy&Fonts</a></p>
                             </div>
-                            <form className={h.search}>
+                            <form className={h.search} onSubmit={handleSubmit(processForm, handleError)}>
                                 <div className={h.search_input}>
-                                    <input placeholder="Найти шрифт..." type="text"/>
+                                    <input placeholder="Найти шрифт..." type="text" name="search"
+                                           {...register('search')}/>
                                 </div>
-                                <button>
+                                <button type="submit">
                                     <FontAwesomeIcon icon={faMagnifyingGlass}/>
                                 </button>
                             </form>

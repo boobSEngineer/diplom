@@ -1,6 +1,6 @@
 import React from "react";
 import p from "../MyProfile/Profile.module.css"
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink, Navigate} from "react-router-dom";
 
 const NavbarProfile = (props) => {
     return (

@@ -3,8 +3,7 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {logoutThunkCreate} from "../../redux/auth-reducer";
 import {getName, getUid} from "../../redux/select/user-selector";
-import {Redirect} from "react-router-dom";
-import {getInitial} from "../../redux/select/app-selector";
+import {selectFontsByThunkCreate} from "../../redux/fonts-reducer";
 
 const HeaderContainer = (props) => {
     return <Header
@@ -13,6 +12,7 @@ const HeaderContainer = (props) => {
         login={props.login}
         username={props.username}
         myId={props.myId}
+        selectFontsBy={props.selectFontsBy}
     />
 }
 
@@ -28,5 +28,6 @@ const MapStateToProps = (state) => {
 export default connect(MapStateToProps,
     {
         logOut: logoutThunkCreate,
+        selectFontsBy:selectFontsByThunkCreate,
     }
 )(HeaderContainer);

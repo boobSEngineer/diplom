@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import './App.css';
-import {Route} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/MyProfile/MyProfile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -27,18 +27,22 @@ const App = (props) => {
             <>
                 <HeaderContainer/>
                 <body className="content">
-                <Route path="/" exact render={() => <HomeContainer/>}/>
-                <Route path="/login" render={() => <LoginContainer/>}/>
-                <Route path="/registration" render={() => <RegisterContainer/>}/>
-                <Route path="/profile/:id_user?" render={(props) =>
-                    <ProfileInfoContainer match={props.match}/>}/>
-                <Route path="/font/:id_font?" render={(props) =>
-                    <FontContainer match={props.match}/>}/>
-                <Route path="/panel_control" render={() => <ProfileContainer/>}/>
-                <Route path="/profile_settings" render={() => <ProfileSettingsContainer/>}/>
-                <Route path="/my_fonts" render={() => <MyFontsContainer/>}/>
-                <Route path="/liked" render={() => <LikedContainer/>}/>
-                <Route path="/fonts_upload" render={() => <UploadFontsContainer/>}/>
+                <Routes>
+                    <Route path="/" exact element={<HomeContainer/>}/>
+                    <Route path="/login" element={<LoginContainer/>}/>
+                    <Route path="/registration" element={<RegisterContainer/>}/>
+                    <Route path="/profile">
+                        <Route path=":id_user" element={<ProfileInfoContainer/>}/>
+                    </Route>
+                    <Route path="/font">
+                        <Route path=":id_font" element={<FontContainer/>}/>
+                    </Route>
+                    <Route path="/panel_control" element={<ProfileContainer/>}/>
+                    <Route path="/profile_settings" element={<ProfileSettingsContainer/>}/>
+                    <Route path="/my_fonts" element={<MyFontsContainer/>}/>
+                    <Route path="/liked" element={<LikedContainer/>}/>
+                    <Route path="/fonts_upload" element={<UploadFontsContainer/>}/>
+                </Routes>
                 </body>
                 <Footer/>
             </>

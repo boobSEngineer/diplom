@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {getInitial} from "../../../../redux/select/app-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
@@ -8,7 +8,7 @@ import NavbarProfile from "./NavbarProfile";
 
 
 const NavbarProfileContainer = (props) => {
-    if (!props.isAuth && props.isInitialized) return <Redirect to={"/login"}/>
+    if (!props.isAuth && props.isInitialized) return <Navigate to={"/login"}/>
     return <NavbarProfile/>
 }
 

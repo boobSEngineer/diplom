@@ -2,28 +2,30 @@ import React, {useEffect} from "react";
 import { getNameById, getUid} from "../../../redux/select/user-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
+import {useMatch, useParams} from "react-router-dom";
 import {updateUserDataThunkCreate} from "../../../redux/user-reducer";
 import ProfileInfo from "./ProfileInfo";
 import {getFontsById} from "../../../redux/select/fonts-selector";
 import {RequestFontsByIdThunkCreate} from "../../../redux/fonts-reducer";
 
 const ProfileInfoContainer = (props) => {
-    let user_id = props.match && props.match.params.id_user;
+    const match = null
+    let { id_user } = useParams();
     useEffect(() => {
-        if (!user_id) {
-            user_id = 1;
+        if (!id_user) {
+            id_user = 1;
         }
-        props.updateUser(user_id)
-    }, [user_id]);
+        props.updateUser(id_user)
+    }, [id_user]);
 
     useEffect(() => {
-        props.requestFontsById(user_id)
-    }, [user_id]);
+        props.requestFontsById(id_user)
+    }, [id_user]);
 
-    user_id = parseInt(user_id)
+    id_user = parseInt(id_user)
 
     return <ProfileInfo
-        id_user={user_id}
+        id_user={id_user}
         usernameById={props.usernameById}
         my_id={props.myId}
         fontsByid={props.fonts}

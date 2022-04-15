@@ -4,14 +4,14 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {getCurrentFont} from "../../redux/select/fonts-selector";
 import FontPage from "./FontPage";
+import {useMatch, useParams} from "react-router-dom";
 
 const FontContainer = (props) => {
-    let font_id = props.match && props.match.params.id_font;
+    let { id_font } = useParams();
     useEffect(() => {
-        props.getFont(font_id)
-    }, [font_id]);
-
-    font_id = parseInt(font_id)
+        props.getFont(id_font)
+    }, [id_font]);
+    id_font = parseInt(id_font)
 
     return <FontPage
             font = {props.current_font}/>

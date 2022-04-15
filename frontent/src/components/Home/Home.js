@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import c from "./PanelControl.module.css";
 import b from "./Content.module.css";
-import {faArrowRotateRight, faCat, faFrog, faGhost, faPoo} from "@fortawesome/free-solid-svg-icons";
+import {faArrowRotateRight} from "@fortawesome/free-solid-svg-icons";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {faTableCellsLarge} from "@fortawesome/free-solid-svg-icons";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useNavigate} from "react-router-dom";
 
 const Home = (props) => {
     const [isShrunk, setShrunk] = useState(false);
@@ -51,16 +52,18 @@ const Home = (props) => {
         return () => window.removeEventListener("scroll", handler);
     }, []);
 
+    const navigate = useNavigate();
+
     function switchSort(variant) {
         switch (variant) {
             case "All":
-                return props.requestFonts()
+                return navigate("/");
             case "1":
-                return props.sortByViews()
+                return navigate("/?sort=views");
             case "2":
-                return props.sortByLikes()
+                return navigate("/?sort=likes");
             case "3":
-                return props.sortByData()
+                return navigate("/?sort=data");
             default:
                 return "";
         }
@@ -72,7 +75,7 @@ const Home = (props) => {
                 <div className={c.control_setting}>
                     <div className={c.container}>
                         <div className={c.sort_fonts}>
-                            <select onChange={(e)=>{switchSort(e.target.value); debugger}}>
+                            <select onChange={(e)=>{switchSort(e.target.value)}}>
                                 <option value="All" selected="selected">Сортировать</option>
                                 <option value="1">Тренд</option>
                                 <option value="2">Самый популярный</option>
