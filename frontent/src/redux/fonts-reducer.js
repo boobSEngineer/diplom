@@ -98,10 +98,10 @@ export const getFontThunkCreate = (id_font) => {
     }
 }
 
-/*----------------------------------------------------- start sort fonts------------------------------*/
-export const SortFontsByLikeThunkCreate = () => {
+//sort fonts
+export const selectFontsByThunkCreate = (parameters) => {
     return (dispatch) => {
-        fontsAPI.sortByLikes()
+        fontsAPI.selectBy(parameters)
             .then(data => {
                 if (data !== null) {
                     dispatch(setFontsCreate(data))
@@ -110,9 +110,9 @@ export const SortFontsByLikeThunkCreate = () => {
     }
 }
 
-export const SortFontsByDataThunkCreate = () => {
+export const searchFontsByLetterThunkCreate = (search_string) => {
     return (dispatch) => {
-        fontsAPI.sortByData()
+        fontsAPI.searchFontsByLetter(search_string)
             .then(data => {
                 if (data !== null) {
                     dispatch(setFontsCreate(data))
@@ -121,17 +121,6 @@ export const SortFontsByDataThunkCreate = () => {
     }
 }
 
-export const SortFontsByViewsThunkCreate = () => {
-    return (dispatch) => {
-        fontsAPI.sortByViews()
-            .then(data => {
-                if (data !== null) {
-                    dispatch(setFontsCreate(data))
-                }
-            })
-    }
-}
-/*----------------------------------------------------- end sort fonts------------------------------*/
 export const uploadFontsThunkCreate = (data) => {
     return (dispatch) => {
         fileAPI.uploadFile(data)
