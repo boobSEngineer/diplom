@@ -43,22 +43,20 @@ export const fontsAPI = {
             })
     },
 
-    sortByLikes() {
-        return instance.get(`sort/by_likes`)
+
+    selectBy(parameters) {
+        return instance.get(`sort/by?${
+            Object.entries(parameters)             // get all [[key0, value0], [key1, value1], ...] pairs 
+                .map(c => {return c[0]+"="+c[1]})  // transform into ["key0=value0", "key1=value1", ...]
+                .join("&")                         // join into one string "key0=value0&key1=value1&..."
+        }`)
             .then(response => {
                 return response.data
             })
     },
 
-    sortByViews() {
-        return instance.get(`sort/by_views`)
-            .then(response => {
-                return response.data
-            })
-    },
-
-    sortByData() {
-        return instance.get(`sort/by_data`)
+    searchFontsByLetter(search_string) {
+        return instance.post(`search/by_letter`, {search_string})
             .then(response => {
                 return response.data
             })
