@@ -25,7 +25,7 @@ const App = (props) => {
         new_query = {...new_query, ...update_params}
         let new_string = Object.entries(new_query)
             .map(c => {
-                return c[0] + "=" + c[1]
+                return c[0] + "=" + encodeURIComponent(c[1])
             })
             .join("&")
         navigate("?" + new_string)

@@ -47,7 +47,9 @@ export const fontsAPI = {
     selectBy(parameters) {
         return instance.get(`sort/by?${
             Object.entries(parameters)             // get all [[key0, value0], [key1, value1], ...] pairs 
-                .map(c => {return c[0]+"="+c[1]})  // transform into ["key0=value0", "key1=value1", ...]
+                .map(c => {
+                    return c[0] + "=" + encodeURIComponent(c[1])
+                })  // transform into ["key0=value0", "key1=value1", ...]
                 .join("&")                         // join into one string "key0=value0&key1=value1&..."
         }`)
             .then(response => {
