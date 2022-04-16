@@ -16,6 +16,7 @@ import ProfileSettingsContainer from "./components/Profile/MyProfile/ProfileSett
 import UploadFontsContainer from "./components/Profile/MyProfile/UploadFonts/UploadFontsContainer";
 import ProfileInfoContainer from "./components/Profile/ProfileCurrentById/ProfileInfoContainer";
 import FontContainer from "./components/FontPage/FontContainer";
+import {Loading} from "./components/common/load/load";
 
 const App = (props) => {
     let new_query = Object.fromEntries([...useSearchParams()[0]]);
@@ -28,7 +29,7 @@ const App = (props) => {
                 return c[0] + "=" + encodeURIComponent(c[1])
             })
             .join("&")
-        navigate("?" + new_string)
+        navigate("/?" + new_string)
     }
 
     useEffect(() => {
@@ -61,7 +62,7 @@ const App = (props) => {
             </>
 
         )
-    } else return <div> INITIALIZING...</div>
+    } else return <><Loading/></>
 
 }
 
