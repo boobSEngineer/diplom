@@ -28,7 +28,9 @@ const Header = (props) => {
                                 <div className={h.search_input}>
                                     <input placeholder="Найти шрифт..." type="text" name="search_string"
                                            {...register('search_string',{onChange: (e) => {
-                                               props.updateQuery({search:e.target.value})
+                                                   if (window.location.pathname === "/") {
+                                                       props.updateQuery({search: e.target.value})
+                                                   }
                                                }})}/>
                                 </div>
                                 <button type="submit">
