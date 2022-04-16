@@ -9,6 +9,7 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import c from "../../Home/PanelControl.module.css";
 import b from "../../Home/Content.module.css";
+import {useNavigate} from "react-router-dom";
 
 
 const ProfileInfo = (props) => {
@@ -30,6 +31,11 @@ const ProfileInfo = (props) => {
 
     const myRef = useRef(null)
     const executeScroll = () => myRef.current.scrollIntoView()
+
+    let navigate = useNavigate();
+    let linkForFont = (id) => {
+        navigate(`/font/${id}`)
+    }
 
     return (
         <>
@@ -83,7 +89,9 @@ const ProfileInfo = (props) => {
                             props.fontsByid.map(f =>
                                 <>
                                     <div className={b.card_square}>
-                                        <div className={b.box}>
+                                        <div className={b.box } onClick={() => {
+                                            linkForFont(f.id_font)
+                                        }}>
                                             <div className={b.box_top}>
                                                 <p className={b.grid_title}>{f.full_name}</p>
                                                 <p className={b.grid_title_made}>Сделано</p>
