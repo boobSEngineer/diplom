@@ -54,13 +54,13 @@
 
 .box {
     min-height: 300px;
-    transition: 0.2s;
     padding: 15px;
     border: 1px solid #e8e8e8;
     border-radius: 5px;
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
+    transition: all .3s ease-in-out;
 }
 
 
@@ -69,6 +69,7 @@
     -webkit-box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
     -moz-box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
     box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+    transform: translate3d(0px, -1px, 0px);
 }
 
 .box_top{
@@ -116,4 +117,22 @@
 }
 .grid_likes :hover{
     color: #81d8d0;
+}
+
+/*--------------------------------------------array fonts null----------------------*/
+
+.wrapper_null {
+    display: flex;
+    align-items: center;
+    margin: 100px auto;
+}
+
+.wrapper_null p {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #dedede;
+}
+
+.box_null {
+
 }

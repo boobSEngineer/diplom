@@ -6,6 +6,7 @@ import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {faTableCellsLarge} from "@fortawesome/free-solid-svg-icons";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
+import {faFaceSadTear} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useNavigate} from "react-router-dom";
 
@@ -55,16 +56,21 @@ const Home = (props) => {
     function switchSort(variant) {
         switch (variant) {
             case "All":
-                return props.updateQuery({sort:"/"});
+                return props.updateQuery({sort: "/"});
             case "1":
-                return props.updateQuery({sort:"views"});
+                return props.updateQuery({sort: "views"});
             case "2":
-                return props.updateQuery({sort:"likes"});
+                return props.updateQuery({sort: "likes"});
             case "3":
-                return props.updateQuery({sort:"data"});
+                return props.updateQuery({sort: "data"});
             default:
                 return "";
         }
+    }
+
+    let navigate = useNavigate();
+    let linkForFont = (id) => {
+        navigate(`/font/${id}`)
     }
 
     return (
@@ -73,7 +79,9 @@ const Home = (props) => {
                 <div className={c.control_setting}>
                     <div className={c.container}>
                         <div className={c.sort_fonts}>
-                            <select onChange={(e)=>{switchSort(e.target.value)}}>
+                            <select onChange={(e) => {
+                                switchSort(e.target.value)
+                            }}>
                                 <option value="All" selected="selected">Сортировать</option>
                                 <option value="1">Тренд</option>
                                 <option value="2">Самый популярный</option>
@@ -143,12 +151,16 @@ const Home = (props) => {
 
             <div className={c.wrapper}>
                 <div className={b.content}>
-                    <div className={style ? b.grid_row : b.grid_square}>
-                        {
-                            props.fonts.map(f =>
-                                <>
+
+                    {
+                        props.fonts.length > 0 ?
+
+                            <div className={style ? b.grid_row : b.grid_square}>
+                                {props.fonts.map(f =>
                                     <div className={style ? b.card_row : b.card_square}>
-                                        <div className={b.box}>
+                                        <div className={b.box} onClick={() => {
+                                            linkForFont(f.id_font)
+                                        }}>
                                             <div className={b.box_top}>
                                                 <p className={b.grid_title}>{f.full_name}</p>
                                                 <p className={b.grid_title_made}>Сделано</p>
@@ -162,14 +174,21 @@ const Home = (props) => {
                                             <div className={b.box_bottom_block2}>
                                                     <span className={b.grid_views}><FontAwesomeIcon
                                                         icon={faEye}/> {f.views}</span>
-                                                <span className={like ? b.grid_likes : b.grid_likes_not_auth}><FontAwesomeIcon icon={faHeart}/> 000000</span>
+                                                <span
+                                                    className={like ? b.grid_likes : b.grid_likes_not_auth}><FontAwesomeIcon
+                                                    icon={faHeart}/> 000000</span>
                                             </div>
                                         </div>
                                     </div>
-                                </>
-                            )
-                        }
-                    </div>
+                                )}
+                            </div>
+                            : <div className={b.wrapper_null}>
+                                <div className={b.box_null}>
+                                    <p>К сожелению ничего не нашлось <FontAwesomeIcon
+                                        icon={faFaceSadTear}/></p>
+                                </div>
+                            </div>
+                    }
                 </div>
             </div>
         </>
