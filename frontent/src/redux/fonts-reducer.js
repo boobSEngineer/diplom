@@ -103,7 +103,7 @@ export const selectFontsByThunkCreate = (parameters) => {
     return (dispatch) => {
         fontsAPI.selectBy(parameters)
             .then(data => {
-                if (data !== null) {
+                if (data) {
                     dispatch(setFontsCreate(data))
                 }
             })
