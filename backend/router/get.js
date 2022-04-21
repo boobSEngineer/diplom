@@ -9,7 +9,7 @@ router.get("/users", authorize(), async (req, res) => {
     res.json(users);
 });
 
-router.get("/profile/:id_user", authorize(), async (req, res) => {
+router.get("/profile/:id_user", async (req, res) => {
     let id_user = req.params.id_user;
     let user = await db.oneOrNone(`SELECT * FROM usr WHERE id_user = '${id_user}'`);
     if (!user) {

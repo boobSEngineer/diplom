@@ -7,22 +7,23 @@ const router = express.Router();
 router.get("/by", async (req, res) => {
     let {sort, search} = req.query
     let fonts = null;
+    let likes_join = `select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) group by font.id_font`
     let condition = "";
     if (search) {
-        condition = `WHERE LOWER(full_name) LIKE '%${search.toLowerCase()}%'`
+        condition = `WHERE LOWER(full_name) LIKE '%${search.toLowerCase()}%' `
     }
     switch (sort) {
         case "views":
-            fonts = await db.any(`SELECT * FROM font ${condition} ORDER BY views DESC`);
+            fonts = await db.any(`select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font  ORDER BY views DESC`);
             break
         case "likes":
-            fonts = await db.any(`SELECT id_font, count(*) id_user FROM likes ${condition} GROUP BY id_font ORDER BY id_user DESC`)
+            fonts = await db.any(` select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font  ORDER BY like_counter DESC`)
             break
         case "data":
-            fonts = await db.any(`SELECT * FROM font ${condition} ORDER BY id_font DESC`);
+            fonts = await db.any(`select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font  ORDER BY font.id_font DESC`);
             break
         default:
-            fonts = await db.any(`SELECT * FROM font ${condition}`);
+            fonts = await db.any(`select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font `);
     }
     res.json(fonts)
 });
