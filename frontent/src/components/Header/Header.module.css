@@ -10,7 +10,6 @@ header {
 
 .wrapper {
     width: 100%;
-    min-width: 1200px;
     padding: 0 20px 0 50px;
     margin: 0;
 }
@@ -26,12 +25,11 @@ header {
 
 .header_top_block1 {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 50%;
-    min-width: 250px;
     margin: 0;
     height: 44px;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .header_top_block2 {
@@ -65,12 +63,12 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0;
-    width: 335px;
     padding-left: 10px;
+    flex-basis: 50%;
 }
 
 .search button {
-    padding: 0;
+    padding-right: 10px;
     margin: 0;
     background-color: white;
     border: none;
@@ -79,7 +77,11 @@ header {
 }
 
 .search_input{
-    margin: 0px;
+    padding-left: 10px;
+    margin: 0;
+    max-width: 90%;
+    width: 80%;
+    min-width: 100px;
     border: none;
     border-bottom: 1px solid #767676;
     caret-color: #5bb1a9;
@@ -87,7 +89,6 @@ header {
 
 .search_input input{
     padding-bottom: 1px;
-    width: 300px;
 }
 
 .search input::placeholder {
