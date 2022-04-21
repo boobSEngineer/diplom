@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import h from "./Header.module.css";
 import {faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,7 @@ const Header = (props) => {
     const {register, handleSubmit} = useForm({mode: "onBlur"});
     const handleError = (errors) => {
     };
+
 
     const processForm = (l) => {
         props.updateQuery({search: l.search_string});

@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {logoutThunkCreate} from "../../redux/auth-reducer";
-import {getName, getUid} from "../../redux/select/user-selector";
+import {logoutThunkCreate, setUserDataCreate} from "../../redux/auth-reducer";
+import {getAuth, getName, getUid} from "../../redux/select/user-selector";
 import {selectFontsByThunkCreate} from "../../redux/fonts-reducer";
 
 const HeaderContainer = (props) => {
@@ -20,7 +20,7 @@ const HeaderContainer = (props) => {
 
 const MapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
+        isAuth: getAuth(state),
         login: state.auth.login,
         username: getName(state),
         myId: getUid(state),

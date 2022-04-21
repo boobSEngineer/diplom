@@ -1,5 +1,4 @@
 import {authAPI, userAPI} from "../API/api";
-import {Navigate} from "react-router-dom";
 import React from "react";
 
 const SET_AUTH_DATA_USER = 'SET-AUTH-DATA-USER';
@@ -49,7 +48,12 @@ export const updateCurrentUserDataThunkCreate = () => {
             .then(data => {
                 if (data) {
                     let {id_user, login, name} = data;
-                    dispatch(setUserDataCreate(id_user, login, name, true));
+                    if (id_user != null) {
+                        dispatch(setUserDataCreate(id_user, login, name, true));
+                    } else {
+                        dispatch(setUserDataCreate(id_user, login, name, false));
+                    }
+
                 }
             })
     }
