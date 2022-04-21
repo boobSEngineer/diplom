@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import p from "./ProfileInfo.module.css";
 import {faAlignJustify, faEye, faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faFrog} from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,17 @@ import {useNavigate} from "react-router-dom";
 
 
 const ProfileInfo = (props) => {
+    const [like, setLike] = useState(false);
+
+    useEffect(() => {
+        setLike((like) => {
+            if (props.isAuth === true) {
+                return like = true;
+            } else {
+                return like = false
+            }
+        })
+    }, [props.isAuth]);
 
     function getSvg(number) {
         switch (number) {
@@ -36,6 +47,8 @@ const ProfileInfo = (props) => {
     let linkForFont = (id) => {
         navigate(`/font/${id}`)
     }
+
+
 
     return (
         <>
@@ -105,7 +118,7 @@ const ProfileInfo = (props) => {
                                             <div className={b.box_bottom_block2}>
                                                     <span className={b.grid_views}><FontAwesomeIcon
                                                         icon={faEye}/> {f.views}</span>
-                                                <span className={b.grid_likes}><FontAwesomeIcon icon={faHeart}/> 000000</span>
+                                                <span className={like ? b.grid_likes : b.grid_likes_not_auth}><FontAwesomeIcon icon={faHeart}/> 0000</span>
                                             </div>
                                         </div>
                                     </div>

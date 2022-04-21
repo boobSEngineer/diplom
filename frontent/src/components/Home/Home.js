@@ -89,13 +89,11 @@ const Home = (props) => {
                             </select>
                         </div>
                     </div>
-                    <div className={c.container}>
-                        <form className={c.sentence_font}>
-                            <div className={c.input_something}>
-                                <input placeholder="Введите что-нибудь"/>
-                            </div>
-                        </form>
-                    </div>
+                    <form className={c.sentence_font}>
+                        <div className={c.input_something}>
+                            <input placeholder="Введите что-нибудь"/>
+                        </div>
+                    </form>
                     <div className={c.container}>
                         <div className={c.range_font}>
                             <div className={c.font_px}>
@@ -172,11 +170,14 @@ const Home = (props) => {
                                         <div className={b.box_bottom}>
                                             <div className={b.box_bottom_block1}></div>
                                             <div className={b.box_bottom_block2}>
-                                                    <span className={b.grid_views}><FontAwesomeIcon
-                                                        icon={faEye}/> {f.views}</span>
-                                                <span
-                                                    className={like ? b.grid_likes : b.grid_likes_not_auth}><FontAwesomeIcon
-                                                    icon={faHeart}/> 000000</span>
+                                                <span className={b.grid_views}><FontAwesomeIcon
+                                                        icon={faEye}/> {f.views}
+                                                </span>
+                                                <span id={f.id_font} className={like ? b.grid_likes : b.grid_likes_not_auth}
+                                                      onClick={() => {
+                                                          props.likeFont(f.id_font)
+                                                      }}><FontAwesomeIcon icon={faHeart} /> {f.like_counter}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

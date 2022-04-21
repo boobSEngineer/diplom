@@ -57,10 +57,10 @@ export const fontsAPI = {
             })
     },
 
-    searchFontsByLetter(search_string) {
-        return instance.post(`search/by_letter`, {search_string})
-            .then(response => {
-                return response.data
+    likeFont(id_font) {
+        return instance.post(`likes/like`, {id_font})
+            .then(res => {
+                return res.data
             })
     },
 

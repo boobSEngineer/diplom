@@ -1,4 +1,4 @@
-import {authAPI, userAPI} from "../API/api";
+import {userAPI} from "../API/api";
 
 const SET_AUTH_DATA_USER_BY_ID = 'SET-AUTH-DATA-USER-BY-ID';
 
@@ -22,8 +22,8 @@ const userReducer = (state = initialState, action) => {
 };
 
 
-export const setUserDataByIdCreate = (id_user, login, name, isAuth) => {
-    return {type: SET_AUTH_DATA_USER_BY_ID, payload: {id_user, login, name, isAuth}}
+export const setUserDataByIdCreate = (id_user, login, name) => {
+    return {type: SET_AUTH_DATA_USER_BY_ID, payload: {id_user, login, name}}
 };
 
 
@@ -33,7 +33,7 @@ export const updateUserDataThunkCreate = (id_user) => {
             .then(data => {
                 if (data) {
                     let {id_user, login, name} = data;
-                    dispatch(setUserDataByIdCreate(id_user, login, name, true));
+                    dispatch(setUserDataByIdCreate(id_user, login, name));
                 }
             })
     }

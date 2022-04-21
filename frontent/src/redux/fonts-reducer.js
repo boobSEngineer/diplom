@@ -36,6 +36,7 @@ const fontsReducer = (state = initialState, action) => {
                 current_font: action.font,
             }
         }
+
         default:
             return state
     }
@@ -110,16 +111,6 @@ export const selectFontsByThunkCreate = (parameters) => {
     }
 }
 
-export const searchFontsByLetterThunkCreate = (search_string) => {
-    return (dispatch) => {
-        fontsAPI.searchFontsByLetter(search_string)
-            .then(data => {
-                if (data !== null) {
-                    dispatch(setFontsCreate(data))
-                }
-            })
-    }
-}
 
 export const uploadFontsThunkCreate = (data) => {
     return (dispatch) => {
@@ -145,6 +136,16 @@ export const deleteFontByIdThunkCreate = (id_font, id_user) => {
     }
 
 };
+
+export const likeFontThunkCreate = (id_font) => {
+    return (dispatch) => {
+        fontsAPI.likeFont(id_font)
+            .then((data)=>{
+                dispatch(setStatusMessageAndSuccessCreate(data.message, data.success));
+        });
+    }
+}
+
 
 
 export default fontsReducer;
