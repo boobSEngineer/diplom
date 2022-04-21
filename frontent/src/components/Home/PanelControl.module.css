@@ -4,8 +4,7 @@
 }
 
 .wrapper_panel {
-    max-width: 100%;
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
     z-index: 1;
 }
@@ -31,8 +30,8 @@
 }
 
 .container {
-    padding: 0;
-    margin: 0 50px;
+    padding: 0 30px;
+    margin: 0;
 }
 
 .sort_fonts {
@@ -68,14 +67,15 @@
 }
 
 .sentence_font {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-basis: 30%;
+    margin: 0 35px;
 }
 
 .sentence_font input {
-    padding: 0 0 2px 10px;
-    width: 250px;
+    padding: 0 6px;
+    max-width: 100%;
+    width: 100%;
+    min-width: 100px;
     border: none;
     border-bottom: 1px solid #000000;
     caret-color: #5bb1a9;
