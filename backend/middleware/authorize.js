@@ -7,10 +7,16 @@ export const authorize = (allowUnauthorizedRequests) => {
         try {
             let token = req.cookies.token;
             if (token == null) {
-                return res.json({message: "Not auth: no token"});
+                if (allowUnauthorizedRequests) {
+                    req.user = null;
+                    next();
+                } else {
+                    return res.json({message: "Not auth: no token"});
+                }
+
             } else {
                 let decodeData = jwt.verify(token, secretKey);
-                if (decodeData.exp >= Date.now() / 1000){
+                if (decodeData.exp >= Date.now() / 1000) {
                     req.user = await db.oneOrNone(`SELECT id_user, login, name FROM usr WHERE id_user = '${decodeData.id}' `);
                     next();
                 } else {
