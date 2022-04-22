@@ -1,33 +1,50 @@
 import express from "express";
 import db from "../db.js"
+import {makeFontsQuery} from "./fonts.js";
 import {authorize} from "../middleware/authorize.js";
 
 const router = express.Router();
 
-router.get("/by", async (req, res) => {
+router.get("/by", authorize(true), async (req, res) => {
     let {sort, search} = req.query
     let fonts = null;
-    let likes_join = `select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) group by font.id_font`
+    let order_by = (params) => {
+        return `ORDER BY ${params} DESC`
+    };
     let condition = "";
     if (search) {
         condition = `WHERE LOWER(full_name) LIKE '%${search.toLowerCase()}%' `
     }
     switch (sort) {
         case "views":
-            fonts = await db.any(`select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font  ORDER BY views DESC`);
+            fonts = await db.any(makeFontsQuery({
+                current_id_user: req.user ? req.user.id_user : null,
+                where_condition: condition,
+                order: order_by(`views`)
+            }));
             break
         case "likes":
-            fonts = await db.any(` select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font  ORDER BY like_counter DESC`)
+            fonts = await db.any(makeFontsQuery({
+                current_id_user: req.user ? req.user.id_user : null,
+                where_condition: condition,
+                order: order_by(`like_counter`)
+            }));
             break
         case "data":
-            fonts = await db.any(`select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font  ORDER BY font.id_font DESC`);
-            break
+            fonts = await db.any(makeFontsQuery({
+                current_id_user: req.user ? req.user.id_user : null,
+                where_condition: condition,
+                order: order_by(`font.id_font`)
+            }));
+            break;
         default:
-            fonts = await db.any(`select font.*, count(likes.id_user) as like_counter  from (font left join likes on font.id_font = likes.id_font) ${condition} group by font.id_font `);
+            fonts = await db.any(makeFontsQuery({
+                current_id_user: req.user ? req.user.id_user : null,
+                where_condition: condition
+            }));
     }
     res.json(fonts)
 });
-
 
 
 export default router;
