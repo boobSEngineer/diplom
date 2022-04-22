@@ -4,6 +4,7 @@ import {fileAPI} from "../API/api2";
 const SET_FONTS = 'SET-FONTS'
 const SET_CURRENT_FONT = 'SET-CURRENT-FONT'
 const SET_STATUS_MESSAGE_AND_SUCCESS = 'SET-STATUS-MESSAGE-AND-SUCCESS';
+const LIKE = 'LIKE';
 
 const initialState = {
     fonts: [],
@@ -37,6 +38,18 @@ const fontsReducer = (state = initialState, action) => {
             }
         }
 
+        case LIKE: {
+            return {
+                ...state,
+                fonts: state.fonts.map(f => {
+                    if (f.id_font === action.id_font) {
+                        return {...f, like_counter: action.counter_like, is_liked: action.is_liked}
+                    }
+                    return f;
+                })
+            }
+        }
+
         default:
             return state
     }
@@ -46,6 +59,11 @@ const fontsReducer = (state = initialState, action) => {
 export const setFontsCreate = (fonts) => {
     return {type: SET_FONTS, fonts}
 }
+
+export const setLikeCreate = (id_font, counter_like, is_liked) => {
+    return {type: LIKE, id_font, counter_like, is_liked}
+}
+
 
 export const setCurrentFontCreate = (font) => {
     return {type: SET_CURRENT_FONT, font}
@@ -88,11 +106,12 @@ export const getFontThunkCreate = (id_font) => {
             fontsAPI.getCurrentFont(id_font)
                 .then(data => {
                     if (data != null) {
-                        fontsAPI.viewFont(id_font).then(()=>{});
+                        fontsAPI.viewFont(id_font).then(() => {
+                        });
                         dispatch(setCurrentFontCreate(data))
                     }
                 })
-        }else {
+        } else {
             dispatch(setCurrentFontCreate([]))
         }
 
@@ -140,12 +159,11 @@ export const deleteFontByIdThunkCreate = (id_font, id_user) => {
 export const likeFontThunkCreate = (id_font) => {
     return (dispatch) => {
         fontsAPI.likeFont(id_font)
-            .then((data)=>{
-                dispatch(setStatusMessageAndSuccessCreate(data.message, data.success));
-        });
+            .then((data) => {
+                dispatch(setLikeCreate(id_font, data.count, data.success))
+            });
     }
 }
-
 
 
 export default fontsReducer;

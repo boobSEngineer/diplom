@@ -13,14 +13,19 @@ import {useNavigate} from "react-router-dom";
 const Home = (props) => {
     const [isShrunk, setShrunk] = useState(false);
     const [style, setStyle] = useState(false);
-    const [like, setLike] = useState(false);
+
+    const [auth, setAuth] = useState(false);
+
+    const likeFont = (id_font) => {
+        props.likeFont(id_font);
+    }
 
     useEffect(() => {
-        setLike((like) => {
+        setAuth((auth) => {
             if (props.isAuth === true) {
-                return like = true;
+                return auth = true;
             } else {
-                return like = false
+                return auth = false
             }
         })
     }, [props.isAuth]);
@@ -171,12 +176,14 @@ const Home = (props) => {
                                             <div className={b.box_bottom_block1}></div>
                                             <div className={b.box_bottom_block2}>
                                                 <span className={b.grid_views}><FontAwesomeIcon
-                                                        icon={faEye}/> {f.views}
+                                                    icon={faEye}/> {f.views}
                                                 </span>
-                                                <span id={f.id_font} className={like ? b.grid_likes : b.grid_likes_not_auth}
-                                                      onClick={() => {
-                                                          props.likeFont(f.id_font)
-                                                      }}><FontAwesomeIcon icon={faHeart} /> {f.like_counter}
+                                                <span  className={auth? b.grid_likes: b.grid_likes_not_auth}>
+                                                    <span className={f.is_liked? b.liked: b.unliked}
+                                                          onClick={() => {
+                                                              likeFont(f.id_font)}}>
+                                                    <FontAwesomeIcon icon={faHeart} /> {f.like_counter}
+                                                </span>
                                                 </span>
                                             </div>
                                         </div>

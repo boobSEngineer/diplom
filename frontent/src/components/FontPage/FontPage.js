@@ -6,7 +6,7 @@ const Font = (props) => {
         <>
             <div className={f.wrapper}>
                 <div className={f.box}>
-                    <div className={f.prewie}>{props.font.full_name}</div>
+                    <div className={f.prewie}>{props.font.full_name} id: {props.font.id_font}</div>
                     <div className={f.nav}>
                         <div className={f.font_navigator}>
                             <a href="">Info</a>

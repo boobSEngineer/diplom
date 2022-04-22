@@ -111,18 +111,25 @@
 }
 
 .box_bottom span {
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
-.grid_likes_not_auth {
-    color: #fa5050;
+.grid_likes_not_auth svg{
+    color: #333333;
 }
 
 
-.grid_likes :hover {
+.grid_likes svg:hover {
     color: #81d8d0;
 }
 
+.liked svg {
+    color: #81d8d0;
+}
+
+.unliked svg {
+    color: #333333;
+}
 
 /*--------------------------------------------array fonts null----------------------*/
 

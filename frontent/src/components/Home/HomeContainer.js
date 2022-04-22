@@ -5,18 +5,16 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {
     likeFontThunkCreate,
-    RequestFontsThunkCreate, selectFontsByThunkCreate, unlikeFontThunkCreate,
+    RequestFontsThunkCreate, selectFontsByThunkCreate,
 } from "../../redux/fonts-reducer";
 import {getAuth} from "../../redux/select/user-selector";
 import {useSearchParams} from "react-router-dom";
 
 const HomeContainer = (props) => {
     let query = Object.fromEntries([...useSearchParams()[0]]); // thanks stackoverflow
-
     useEffect(() => {
         props.selectFontsBy(query)
     }, [window.location.search]);
-
     return <Home
         fonts={props.fonts}
         isAuth={props.isAuth}
