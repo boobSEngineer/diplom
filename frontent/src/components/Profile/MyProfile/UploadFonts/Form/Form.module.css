@@ -2,7 +2,7 @@
 
 .box {
     height: 500px;
-    max-width: 830px;
+    max-width: 100%;
     padding: 0;
     margin: 25px 0;
 }
