@@ -118,8 +118,22 @@ export const getFontThunkCreate = (id_font) => {
     }
 }
 
+export const getLikedFontsThunkCreate = (id_user) => {
+    return (dispatch) => {
+        fontsAPI.getLikedFonts()
+            .then(data => {
+                if (id_user !== null) {
+                    dispatch(setFontsCreate(data))
+                } else {
+                    dispatch(setFontsCreate([]))
+                }
+            })
+    }
+}
+
 //sort fonts
 export const selectFontsByThunkCreate = (parameters) => {
+    debugger
     return (dispatch) => {
         fontsAPI.selectBy(parameters)
             .then(data => {
@@ -157,10 +171,13 @@ export const deleteFontByIdThunkCreate = (id_font, id_user) => {
 };
 
 export const likeFontThunkCreate = (id_font) => {
+
     return (dispatch) => {
         fontsAPI.likeFont(id_font)
             .then((data) => {
-                dispatch(setLikeCreate(id_font, data.count, data.success))
+                if (data.success) {
+                    dispatch(setLikeCreate(id_font, data.count, data.is_liked))
+                }
             });
     }
 }
