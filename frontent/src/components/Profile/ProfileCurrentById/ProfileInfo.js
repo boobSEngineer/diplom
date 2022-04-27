@@ -13,14 +13,18 @@ import {useNavigate} from "react-router-dom";
 
 
 const ProfileInfo = (props) => {
-    const [like, setLike] = useState(false);
+    const [auth, setAuth] = useState(false);
+
+    const likeFont = (id_font) => {
+        props.likeFont(id_font);
+    }
 
     useEffect(() => {
-        setLike((like) => {
+        setAuth((auth) => {
             if (props.isAuth === true) {
-                return like = true;
+                return auth = true;
             } else {
-                return like = false
+                return auth = false
             }
         })
     }, [props.isAuth]);
@@ -116,9 +120,16 @@ const ProfileInfo = (props) => {
                                         <div className={b.box_bottom}>
                                             <div className={b.box_bottom_block1}></div>
                                             <div className={b.box_bottom_block2}>
-                                                    <span className={b.grid_views}><FontAwesomeIcon
-                                                        icon={faEye}/> {f.views}</span>
-                                                <span className={like ? b.grid_likes : b.grid_likes_not_auth}><FontAwesomeIcon icon={faHeart}/> 0000</span>
+                                                <span className={b.grid_views}><FontAwesomeIcon
+                                                    icon={faEye}/> {f.views}
+                                                </span>
+                                                <span  className={auth? b.grid_likes: b.grid_likes_not_auth}>
+                                                    <span className={f.is_liked? b.liked: b.unliked}
+                                                          onClick={() => {
+                                                              likeFont(f.id_font)}}>
+                                                    <FontAwesomeIcon icon={faHeart} /> {f.like_counter}
+                                                </span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

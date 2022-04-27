@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
-import { getNameById, getUid} from "../../../redux/select/user-selector";
+import {getAuth, getNameById, getUid} from "../../../redux/select/user-selector";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {useMatch, useParams} from "react-router-dom";
 import {updateUserDataThunkCreate} from "../../../redux/user-reducer";
 import ProfileInfo from "./ProfileInfo";
 import {getFontsById} from "../../../redux/select/fonts-selector";
-import {RequestFontsByIdThunkCreate} from "../../../redux/fonts-reducer";
+import {likeFontThunkCreate, RequestFontsByIdThunkCreate} from "../../../redux/fonts-reducer";
 
 const ProfileInfoContainer = (props) => {
     const match = null
@@ -29,6 +29,8 @@ const ProfileInfoContainer = (props) => {
         usernameById={props.usernameById}
         my_id={props.myId}
         fontsByid={props.fonts}
+        likeFont={props.likeFont}
+        isAuth={props.isAuth}
 
     />
 }
@@ -38,6 +40,7 @@ const MapStateToProps = (state) => {
         usernameById: getNameById(state),
         myId: getUid(state),
         fonts: getFontsById(state),
+        isAuth: getAuth(state)
     }
 };
 
@@ -45,7 +48,8 @@ export default compose(
     connect(MapStateToProps,
         {
             updateUser:updateUserDataThunkCreate,
-            requestFontsById:RequestFontsByIdThunkCreate
+            requestFontsById:RequestFontsByIdThunkCreate,
+            likeFont:likeFontThunkCreate,
 
         }),
 )(ProfileInfoContainer)
