@@ -22,9 +22,9 @@ const Profile = (props) => {
                                 <div className={p.panel_control_block}>
                                     <a href="/profile">Панель управления</a>
                                 </div>
-                                <div className={p.panel_control_block}>
-                                    <a href="/profile_settings">Детали профиля</a>
-                                </div>
+                                {/*<div className={p.panel_control_block}>*/}
+                                {/*    <a href="/profile_settings">Детали профиля</a>*/}
+                                {/*</div>*/}
                                 <div className={p.panel_control_block}>
                                     <a href="/fonts_upload">Загрузить шрифт</a>
                                 </div>
@@ -33,6 +33,9 @@ const Profile = (props) => {
                                 </div>
                                 <div className={p.panel_control_block}>
                                     <a href="/liked">Понравилось</a>
+                                </div>
+                                <div className={p.panel_control_block}>
+                                    <div></div>
                                 </div>
                                 <div className={p.panel_control_block}>
                                     <div></div>
