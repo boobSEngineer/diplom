@@ -6,14 +6,27 @@ import {authorize} from "../middleware/authorize.js";
 const router = express.Router();
 
 router.get("/by", authorize(true), async (req, res) => {
-    let {sort, search} = req.query
+    let {sort, search, liked, uploaded} = req.query
     let fonts = null;
     let order_by = (params) => {
         return `ORDER BY ${params} DESC`
     };
-    let condition = "";
+    let condition = [];
+    if (req.user && req.user.id_user) {
+        if (liked) {
+            condition.push(`likes.id_user = ${req.user.id_user}`)
+        }
+        if (uploaded) {
+            condition.push(`font.id_user = ${req.user.id_user}`)
+        }
+    }
     if (search) {
-        condition = `WHERE LOWER(full_name) LIKE '%${search.toLowerCase()}%' `
+        condition.push(`LOWER(full_name) LIKE '%${search.toLowerCase()}%' `)
+    }
+    if (condition.length <= 0) {
+        condition = null;
+    } else {
+        condition = `WHERE ` + condition.join(" AND ");
     }
     switch (sort) {
         case "views":
@@ -44,6 +57,7 @@ router.get("/by", authorize(true), async (req, res) => {
             }));
     }
     res.json(fonts)
+
 });
 
 

@@ -22,10 +22,18 @@ export const fontsAPI = {
                 return response.data
             })
     },
+
     getCurrentFont(id_font) {
         return instance.get(`fonts/font/${id_font}`)
             .then(response => {
                 return response.data
+            })
+    },
+
+    getLikedFonts() {
+        return instance.get(`fonts/liked_fonts`)
+            .then(res => {
+                return res.data
             })
     },
 

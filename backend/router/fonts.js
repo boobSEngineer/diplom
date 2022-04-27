@@ -2,6 +2,7 @@ import express from "express";
 import db from "../db.js"
 import {authorize} from "../middleware/authorize.js";
 
+
 const router = express.Router();
 
 export const makeFontsQuery = (params) => {
@@ -28,7 +29,9 @@ export const makeFontsQuery = (params) => {
 router.get("/gallery", authorize(true), async (req, res) => {
     if (req.user) {
         let {id_user} = req.user;
-        let fonts = await db.any(makeFontsQuery({current_id_user: id_user}));
+        let fonts = await db.any(makeFontsQuery({
+            current_id_user: id_user
+        }));
         res.json(fonts);
     } else {
         let fonts = await db.any(makeFontsQuery({}));
@@ -49,6 +52,7 @@ router.post("/delete_font", authorize(), async (req, res) => {
     try {
         let {id_font} = req.body;
         let {id_user} = req.user;
+        await db.none(`DELETE FROM likes where likes.id_font = ${id_font}`)
         await db.none(`DELETE FROM "font" WHERE "id_font" = ${id_font} AND "id_user" = ${id_user}`);
         res.json({success: true, message: "no error (success)"});
     } catch (e) {
@@ -57,7 +61,7 @@ router.post("/delete_font", authorize(), async (req, res) => {
     }
 });
 
-router.get("/font/:id_font",authorize(true), async (req, res) => {
+router.get("/font/:id_font", authorize(true), async (req, res) => {
     let id_font = req.params.id_font;
     let font = await db.oneOrNone(makeFontsQuery({
         current_id_user: req.user ? req.user.id_user : null,
@@ -69,5 +73,14 @@ router.get("/font/:id_font",authorize(true), async (req, res) => {
     }
     res.json(font);
 });
+
+router.get("/liked_fonts", authorize(), async (req, res) => {
+    let {id_user} = req.user;
+    let fonts = await db.any(makeFontsQuery({
+        current_id_user: id_user,
+        where_condition: `WHERE likes.id_user = ${id_user}`
+    }));
+    res.json(fonts);
+})
 
 export default router;

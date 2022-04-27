@@ -15,9 +15,9 @@ router.post("/like", authorize(), async (req, res) => {
             await db.none(`DELETE FROM "likes" WHERE "id_font" = ${id_font} AND "id_user" = ${id_user}`);
             counter_like = await db.oneOrNone(`select COUNT(id_user) as counter_likes from likes where id_font = ${id_font} group by id_font `);
             if (counter_like) {
-                res.json({success: false, message: "Unlike works", count: counter_like.counter_likes})
+                res.json({success: true, is_liked: false, message: "Unlike works", count: counter_like.counter_likes})
             } else {
-                res.json({success: false, message: "Unlike works", count: "0"})
+                res.json({success: true, is_liked: false, message: "Unlike works", count: "0"})
             }
 
         } else {
@@ -25,9 +25,9 @@ router.post("/like", authorize(), async (req, res) => {
             await db.none(`INSERT INTO likes(id_user, id_font) VALUES(${id_user}, ${id_font})`);
             counter_like = await db.oneOrNone(`select COUNT(id_user) as counter_likes from likes where id_font = ${id_font} group by id_font `);
             if (counter_like) {
-                res.json({success: true, message: "Unlike works", count: counter_like.counter_likes})
+                res.json({success: true, is_liked: true, message: "Unlike works", count: counter_like.counter_likes})
             } else {
-                res.json({success: true, message: "Unlike works", count: "0"})
+                res.json({success: true, is_liked: true, message: "Unlike works", count: "0"})
             }
         }
     } catch (e) {
