@@ -1,6 +1,5 @@
 .wrapper {
     width: 100%;
-    min-width: 1200px;
 }
 
 .box {
@@ -10,14 +9,62 @@
 }
 
 .prewie {
-    width: 1000px;
-    height: 500px;
-    background: #5bb1a9;
+    width: 100%;
+    min-height: 550px;
+    background: url('../common/accets/foll2.png')0 0/100% auto repeat fixed;
+    margin: 0;
 }
+
+.boxing {
+    margin: 0 auto;
+    padding: 10px 40px;
+}
+
+.change_page {
+    margin: 200px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change_page a {
+    margin: 0 40px;
+}
+
+.change_page svg {
+    width: 80px;
+    height: 80px;
+}
+
+.change_page a:first-child {
+    color: white;
+}
+
+.change_page a:last-child {
+    color: #ffffff;
+}
+
+.title {
+    margin: 0px auto;
+}
+
+
+.title p {
+    display: inline-block;
+    word-break: break-word;
+    text-align: center;
+    color: #ffffff;
+    margin: 0;
+    font-size: 100px;
+
+}
+
+
 
 .nav {
     height: 5em;
-    padding: 0 6vw;
+    padding: 40px 50px;
+    margin-left: 10px;
 }
 
 .font_navigator {
@@ -35,7 +82,9 @@
 .font_navigator a:focus:after {
     width: 100%;
 }
+
 .font_navigator a {
+    padding-right: 20px;
     color: #333333;
     cursor: pointer;
 }
