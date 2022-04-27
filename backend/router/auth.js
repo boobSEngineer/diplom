@@ -36,8 +36,6 @@ router.post("/registration", [
             res.cookie('token', token);
             res.json({success: true, message: "* Регистрация прошла успешно."});
         }
-        // let hashPassword =
-
     } catch (e) {
         console.log(e)
         res.json({success: false, message: "* Ошибка регистрации."});

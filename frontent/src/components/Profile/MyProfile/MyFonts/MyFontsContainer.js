@@ -5,19 +5,27 @@ import {getFontsById} from "../../../../redux/select/fonts-selector";
 import MyFonts from "./MyFonts";
 import {
     deleteFontByIdThunkCreate,
-    RequestFontsByIdThunkCreate
+    RequestFontsByIdThunkCreate, selectFontsByThunkCreate
 } from "../../../../redux/fonts-reducer";
 import {getCurrentUser, getUid} from "../../../../redux/select/user-selector";
+import {useSearchParams} from "react-router-dom";
 
 const MyFontsContainer = (props) => {
+    let query = Object.fromEntries([...useSearchParams()[0]]); // thanks stackoverflow
+
+    useEffect(() => {
+        props.selectFontsBy({...query, uploaded:"uploaded fonts"})
+    }, [window.location.search]);
+
     useEffect(() => {
         props.requestFontsById(props.id)
-    }, [props.id]);
+    }, []);
 
     return <MyFonts
         fonts={props.fonts}
         deleteFontById={props.deleteFontById}
         id_user={props.id_user}
+        updateQuery={props.updateQuery}
     />
 }
 
@@ -33,5 +41,6 @@ export default compose(
     connect(MapStateToProps,
         { requestFontsById:RequestFontsByIdThunkCreate,
             deleteFontById:deleteFontByIdThunkCreate,
+            selectFontsBy:selectFontsByThunkCreate
         }),
 )(MyFontsContainer)

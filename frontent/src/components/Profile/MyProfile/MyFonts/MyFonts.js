@@ -5,8 +5,40 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faHeart, faXmark} from "@fortawesome/free-solid-svg-icons";
 import c from "../../../Home/PanelControl.module.css";
 import NavbarProfileContainer from "../NavbarProfile/NavbarProfileContainer";
+import l from "../Liked/Liked.Module.css";
+import {useNavigate} from "react-router-dom";
+import {useForm} from "react-hook-form";
 
 const MyFonts = (props) => {
+    const {register, handleSubmit} = useForm({mode: "onBlur"});
+    const handleError = (errors) => {
+    };
+
+
+    const processForm = (l) => {
+        props.updateQuery({search: l.search_string},"uploaded");
+    };
+
+    function switchSort(variant) {
+        debugger
+        switch (variant) {
+            case "All":
+                return props.updateQuery({sort: "/liked"}, "uploaded");
+            case "1":
+                return props.updateQuery({sort: "views"}, "uploaded");
+            case "2":
+                return props.updateQuery({sort: "likes"}, "uploaded");
+            case "3":
+                return props.updateQuery({sort: "data"}, "uploaded");
+            default:
+                return "";
+        }
+    }
+
+    let navigate = useNavigate();
+    let linkForFont = (id) => {
+        navigate(`/font/${id}`)
+    }
     return (
         <>
             <div className={p.wrapper}>
@@ -18,34 +50,59 @@ const MyFonts = (props) => {
                         <div className={m.content_box}>
                             <div className={m.settings_box}>
                                 <div className={m.sort_fonts}>
-                                    <select>
+                                    <select onChange={(e) => {
+                                        switchSort(e.target.value)
+                                    }}>
                                         <option value="All" selected="selected">Сортировать</option>
-                                        <option value="">Самый популярный</option>
-                                        <option value="">Новое</option>
-                                        <option value="">Алфовит</option>
+                                        <option value="1">Тренд</option>
+                                        <option value="2">Самый популярный</option>
+                                        <option value="3">Новое</option>
                                     </select>
                                 </div>
-                                <form className={c.sentence_font}>
+                                <form className={c.sentence_font} onSubmit={handleSubmit(processForm, handleError)}>
                                     <div className={c.input_something}>
-                                        <input placeholder="Поиск..."/>
+                                        <input placeholder="Найти шрифт..." type="text" name="search_string"
+                                               {...register('search_string',{onChange: (e) => {
+                                                       if (window.location.pathname === "/") {
+                                                           props.updateQuery({search: e.target.value})
+                                                       }
+                                                   }})}/>
                                     </div>
                                 </form>
                             </div>
                             <div className={m.content_column}>
-                                {props.fonts.map(f =>
-                                    <div className={m.content}>
-                                        <div className={m.title_font}>
-                                            <h3>{f.full_name}</h3>
-                                            <span className={m.font_by}><FontAwesomeIcon
-                                                icon={faEye}/> {f.views}</span>
-                                            <span className={m.font_by}><FontAwesomeIcon icon={faHeart}/> 000000</span>
+                                {
+                                    props.fonts.length > 0 ?
+                                        <>
+                                            {props.fonts.map(f =>
+                                                <div className={m.content}>
+                                                    <div className={m.title_font}>
+                                                        <div className={m.title1} onClick={() => {
+                                                            linkForFont(f.id_font)
+                                                        }}>
+                                                            <h3>{f.full_name}</h3>
+                                                        </div>
+                                                        <div className={m.title2}>
+                                                            <span className={m.font_by}><FontAwesomeIcon
+                                                                icon={faEye}/> {f.views}</span>
+                                                            <span className={m.font_by}><FontAwesomeIcon
+                                                                icon={faHeart}/> {f.like_counter}</span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div className={m.font_link}>
+                                                        <a onClick={() => {
+                                                            props.deleteFontById(f.id_font, props.id_user)
+                                                        }}><FontAwesomeIcon icon={faXmark}/></a>
+                                                        <a href={`http://localhost:4000/file/fonts/${f.path}`}>Скачать</a>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </>
+                                        : <div className={l.box_panel_null}>
+                                            <p>Вы еще ничего не загрузили</p>
                                         </div>
-                                        <div className={m.font_link}>
-                                            <a onClick={() => {props.deleteFontById(f.id_font, props.id_user)}}><FontAwesomeIcon icon={faXmark}/></a>
-                                            <a href={`http://localhost:4000/file/fonts/${f.path}`}>Скачать</a>
-                                        </div>
-                                    </div>
-                                )}
+                                }
                             </div>
                         </div>
                     </div>
