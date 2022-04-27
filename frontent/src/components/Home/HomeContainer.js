@@ -15,6 +15,7 @@ const HomeContainer = (props) => {
     useEffect(() => {
         props.selectFontsBy(query)
     }, [window.location.search]);
+
     return <Home
         fonts={props.fonts}
         isAuth={props.isAuth}

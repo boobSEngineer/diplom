@@ -18,6 +18,7 @@ const Home = (props) => {
 
     const likeFont = (id_font) => {
         props.likeFont(id_font);
+
     }
 
     useEffect(() => {
@@ -59,15 +60,16 @@ const Home = (props) => {
     }, []);
 
     function switchSort(variant) {
+        debugger
         switch (variant) {
             case "All":
-                return props.updateQuery({sort: "/"});
+                return props.updateQuery({sort: "/"}, "home");
             case "1":
-                return props.updateQuery({sort: "views"});
+                return props.updateQuery({sort: "views"}, "home");
             case "2":
-                return props.updateQuery({sort: "likes"});
+                return props.updateQuery({sort: "likes"}, "home");
             case "3":
-                return props.updateQuery({sort: "data"});
+                return props.updateQuery({sort: "data"}, "home");
             default:
                 return "";
         }
@@ -178,11 +180,12 @@ const Home = (props) => {
                                                 <span className={b.grid_views}><FontAwesomeIcon
                                                     icon={faEye}/> {f.views}
                                                 </span>
-                                                <span  className={auth? b.grid_likes: b.grid_likes_not_auth}>
-                                                    <span className={f.is_liked? b.liked: b.unliked}
+                                                <span className={auth ? b.grid_likes : b.grid_likes_not_auth}>
+                                                    <span className={f.is_liked ? b.liked : b.unliked}
                                                           onClick={() => {
-                                                              likeFont(f.id_font)}}>
-                                                    <FontAwesomeIcon icon={faHeart} /> {f.like_counter}
+                                                              likeFont(f.id_font)
+                                                          }}>
+                                                    <FontAwesomeIcon icon={faHeart}/> {f.like_counter}
                                                 </span>
                                                 </span>
                                             </div>

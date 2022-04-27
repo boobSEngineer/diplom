@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import h from "./Header.module.css";
 import {faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,7 @@ const Header = (props) => {
 
 
     const processForm = (l) => {
-        props.updateQuery({search: l.search_string});
+        props.updateQuery({search: l.search_string}, "home");
     };
 
     return (
@@ -49,7 +49,7 @@ const Header = (props) => {
                                                 <a href={`/profile/${props.myId}`}>{props.username}</a>
                                                 <ul>
                                                     <li><a href="/panel_control">Панель управления</a></li>
-                                                    <li><a href="/profile_settings"> Детали профиля</a></li>
+                                                    {/*<li><a href="/profile_settings"> Детали профиля</a></li>*/}
                                                     <li><a href="/fonts_upload">Загрузить шрифт</a></li>
                                                     <li><a href="/my_fonts">Мои шрифты</a></li>
                                                     <li><a href="/liked">Понравилось</a></li>

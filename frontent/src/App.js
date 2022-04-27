@@ -17,19 +17,29 @@ import UploadFontsContainer from "./components/Profile/MyProfile/UploadFonts/Upl
 import ProfileInfoContainer from "./components/Profile/ProfileCurrentById/ProfileInfoContainer";
 import FontContainer from "./components/FontPage/FontContainer";
 import {Loading} from "./components/common/load/load";
+import FontInfoContainer from "./components/FontPage/Info/FontInfoContainer";
 
 const App = (props) => {
     let new_query = Object.fromEntries([...useSearchParams()[0]]);
     const navigate = useNavigate();
 
-    let updateQuery = (update_params) => {
+    let updateQuery = (update_params, variant) => {
         new_query = {...new_query, ...update_params}
         let new_string = Object.entries(new_query)
             .map(c => {
                 return c[0] + "=" + encodeURIComponent(c[1])
             })
-            .join("&")
-        navigate("/?" + new_string)
+            .join("&");
+        switch (variant) {
+            case "home":
+                return navigate("/?" + new_string);
+            case "liked":
+                return navigate("/liked/?" + new_string);
+            case "uploaded":
+                return  navigate("/my_fonts/?" + new_string);
+            default:
+                return ""
+        }
     }
 
     useEffect(() => {
@@ -49,13 +59,26 @@ const App = (props) => {
                         <Route path=":id_user" element={<ProfileInfoContainer/>}/>
                     </Route>
                     <Route path="/font">
-                        <Route path=":id_font" element={<FontContainer/>}/>
+                        <Route path=":id_font" element={
+                            <>
+                                <FontContainer/>
+                                <FontInfoContainer/>
+                            </>
+                        }/>
+                    </Route>
+                    <Route path="/font_tester">
+                        <Route path=":id_font" element={
+                            <>
+                                <FontContainer/>
+                                <div/>
+                            </>
+                        }/>
                     </Route>
                     <Route path="/panel_control" element={<ProfileContainer/>}/>
                     <Route path="/profile_settings" element={<ProfileSettingsContainer/>}/>
-                    <Route path="/my_fonts" element={<MyFontsContainer/>}/>
-                    <Route path="/liked" element={<LikedContainer/>}/>
-                    <Route path="/fonts_upload" element={<UploadFontsContainer/>}/>
+                    <Route path="/my_fonts" element={<MyFontsContainer updateQuery={updateQuery}/>}/>
+                    <Route path="/liked" element={<LikedContainer updateQuery={updateQuery}/>}/>
+                    <Route path="/fonts_upload" element={<UploadFontsContainer />}/>
                 </Routes>
                 </body>
                 <Footer/>
