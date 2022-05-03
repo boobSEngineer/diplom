@@ -1,14 +1,16 @@
 import {fontsAPI} from "../API/api";
 import {fileAPI} from "../API/api2";
 
-const SET_FONTS = 'SET-FONTS'
-const SET_CURRENT_FONT = 'SET-CURRENT-FONT'
+const SET_FONTS = 'SET-FONTS';
+const SET_CURRENT_FONT = 'SET-CURRENT-FONT';
 const SET_STATUS_MESSAGE_AND_SUCCESS = 'SET-STATUS-MESSAGE-AND-SUCCESS';
 const LIKE = 'LIKE';
+const SET_LIKE_FOR_CURRENT_FONT = 'SET-LIKE-FOR-CURRENT-FONT';
+
 
 const initialState = {
     fonts: [],
-    current_font: [],
+    current_font:{},
     pageSize: 100,
     totalFontsCount: 0,
     status_message: null,
@@ -38,12 +40,20 @@ const fontsReducer = (state = initialState, action) => {
             }
         }
 
+        case SET_LIKE_FOR_CURRENT_FONT: {
+            return {
+                ...state,
+                current_font: {...state.current_font, like_counter: action.like_counter, is_liked: action.is_liked}
+
+            }
+        }
+
         case LIKE: {
             return {
                 ...state,
                 fonts: state.fonts.map(f => {
                     if (f.id_font === action.id_font) {
-                        return {...f, like_counter: action.counter_like, is_liked: action.is_liked}
+                        return {...f, like_counter: action.like_counter, is_liked: action.is_liked}
                     }
                     return f;
                 })
@@ -60,10 +70,13 @@ export const setFontsCreate = (fonts) => {
     return {type: SET_FONTS, fonts}
 }
 
-export const setLikeCreate = (id_font, counter_like, is_liked) => {
-    return {type: LIKE, id_font, counter_like, is_liked}
+export const setLikeCreate = (id_font, like_counter, is_liked) => {
+    return {type: LIKE, id_font, like_counter, is_liked}
 }
 
+export const setLikeForCurrentFontCreate = (like_counter, is_liked) => {
+    return {type: SET_LIKE_FOR_CURRENT_FONT, like_counter, is_liked}
+}
 
 export const setCurrentFontCreate = (font) => {
     return {type: SET_CURRENT_FONT, font}
@@ -133,7 +146,6 @@ export const getLikedFontsThunkCreate = (id_user) => {
 
 //sort fonts
 export const selectFontsByThunkCreate = (parameters) => {
-    debugger
     return (dispatch) => {
         fontsAPI.selectBy(parameters)
             .then(data => {
@@ -171,7 +183,6 @@ export const deleteFontByIdThunkCreate = (id_font, id_user) => {
 };
 
 export const likeFontThunkCreate = (id_font) => {
-
     return (dispatch) => {
         fontsAPI.likeFont(id_font)
             .then((data) => {
@@ -181,7 +192,16 @@ export const likeFontThunkCreate = (id_font) => {
             });
     }
 }
-
+export const likeForCurrentFontThunkCreate = (id_font) => {
+    return (dispatch) => {
+        fontsAPI.likeFont(id_font)
+            .then((data) => {
+                if (data.success) {
+                    dispatch(setLikeForCurrentFontCreate(data.count, data.is_liked))
+                }
+            });
+    }
+}
 
 export default fontsReducer;
 

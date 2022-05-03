@@ -78,6 +78,7 @@ const Home = (props) => {
     let navigate = useNavigate();
     let linkForFont = (id) => {
         navigate(`/font/${id}`)
+        window.scrollTo({top: 0, behavior: "instant"});
     }
 
     return (
