@@ -38,7 +38,6 @@ const MapStateToProps = (state) => {
 export default compose(
     connect(MapStateToProps,
         {
-            requestFontsById: RequestFontsByIdThunkCreate,
             likedFonts: getLikedFontsThunkCreate,
             likeFont:likeFontThunkCreate,
             selectFontsBy:selectFontsByThunkCreate

@@ -29,7 +29,6 @@ const Header = (props) => {
                                 <div className={h.search_input}>
                                     <input placeholder="Найти шрифт..." type="text" name="search_string"
                                            {...register('search_string',{onChange: (e) => {
-                                               debugger
                                                    if (window.location.pathname === "/") {
                                                        props.updateQuery({search: e.target.value}, "home")
                                                    }

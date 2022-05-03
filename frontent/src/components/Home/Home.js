@@ -10,12 +10,23 @@ import {faFaceSadTear} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useNavigate} from "react-router-dom";
 import {fontRegistry} from "../../API/fontRegistry";
+import {useForm} from "react-hook-form";
 
 const Home = (props) => {
     const [isShrunk, setShrunk] = useState(false);
     const [style, setStyle] = useState(false);
+    const [value, setValueFont] = useState(null);
 
     const [auth, setAuth] = useState(false);
+
+    const {register, handleSubmit} = useForm({mode: "onBlur"});
+    const handleError = (errors) => {
+    };
+
+
+    const processForm = (l) => {
+        setValueFont(l.value_string)
+    };
 
     const likeFont = (id_font) => {
         props.likeFont(id_font);
@@ -97,9 +108,16 @@ const Home = (props) => {
                             </select>
                         </div>
                     </div>
-                    <form className={c.sentence_font}>
+                    <form className={c.sentence_font} onSubmit={handleSubmit(processForm, handleError)}>
                         <div className={c.input_something}>
-                            <input placeholder="Введите что-нибудь"/>
+                            <input placeholder="Введите что-нибудь" type="text" name="value_string"
+                                   {...register('value_string', {
+                                       onChange: (e) => {
+                                           {
+                                               setValueFont(e.target.value)
+                                           }
+                                       }
+                                   })}/>
                         </div>
                     </form>
                     <div className={c.container}>
@@ -172,7 +190,7 @@ const Home = (props) => {
                                                 <p className={b.grid_title_made}>Сделано</p>
                                             </div>
                                             <div className={b.box_content}>
-                                                <p style={{'font-family':fontRegistry(f.path)}}>hello</p>
+                                                <p style={{'font-family': fontRegistry(f.path)}}>{value? value:"Hello world!"}</p>
                                             </div>
                                         </div>
                                         <div className={b.box_bottom}>
