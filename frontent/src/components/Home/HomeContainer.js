@@ -12,6 +12,7 @@ import {useSearchParams} from "react-router-dom";
 
 const HomeContainer = (props) => {
     let query = Object.fromEntries([...useSearchParams()[0]]); // thanks stackoverflow
+    debugger
     useEffect(() => {
         props.selectFontsBy(query)
     }, [window.location.search]);

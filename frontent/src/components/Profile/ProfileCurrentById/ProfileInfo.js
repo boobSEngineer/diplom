@@ -97,8 +97,6 @@ const ProfileInfo = (props) => {
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
             <div ref={myRef} className={c.wrapper}>
                 <div className={b.content}>
                     <div className={b.grid_square}>

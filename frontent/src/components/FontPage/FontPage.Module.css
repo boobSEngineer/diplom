@@ -11,13 +11,13 @@
 .prewie {
     width: 100%;
     min-height: 550px;
-    background: url('../common/accets/foll2.png')0 0/100% auto repeat fixed;
+    background: url('../common/accets/fall8.PNG') 0 0/100% auto no-repeat fixed;
     margin: 0;
 }
 
 .boxing {
     margin: 0 auto;
-    padding: 10px 40px;
+    padding: 20px 60px;
 }
 
 .change_page {
@@ -37,11 +37,11 @@
 }
 
 .change_page a:first-child {
-    color: white;
+    color: #3f3f3f;
 }
 
 .change_page a:last-child {
-    color: #ffffff;
+    color: #3f3f3f;
 }
 
 .title {
@@ -53,17 +53,16 @@
     display: inline-block;
     word-break: break-word;
     text-align: center;
-    color: #ffffff;
+    color: #3f3f3f;
     margin: 0;
     font-size: 100px;
 
 }
 
 
-
 .nav {
     height: 5em;
-    padding: 40px 50px;
+    padding: 40px 50px 10px 50px;
     margin-left: 10px;
 }
 
@@ -84,7 +83,7 @@
 }
 
 .font_navigator a {
-    padding-right: 20px;
+    padding-right: 30px;
     color: #333333;
     cursor: pointer;
 }
@@ -99,3 +98,153 @@
     -moz--transition: width .3s ease-in-out;
     transition: width .3s ease-in-out;
 }
+
+/*---------------------------------------like and views block1-------------------------------------*/
+
+.title_navigation1 a{
+    padding-right: 20px;
+    font-size: 30px;
+    font-weight: 300;
+    color: #3f3f3f;
+}
+
+.title_navigation1 span {
+    padding-right: 20px;
+    font-size: 30px;
+    font-weight: 300;
+    color: #3f3f3f;
+}
+
+.button_share {
+    background: transparent;
+}
+
+.share svg {
+    padding-right: 10px;
+    padding-bottom: 2px;
+    width: 30px;
+    height: 30px;
+    color: #3f3f3f;
+}
+
+.grid_views svg {
+    padding-right: 5px;
+    width: 30px;
+    height: 30px;
+    color: #3f3f3f;
+}
+
+
+.grid_likes_not_auth svg {
+    color: #333333;
+}
+
+
+.grid_likes svg:hover {
+    color: #81d8d0;
+}
+
+.liked svg {
+    color: #81d8d0;
+}
+
+.unliked svg {
+    color: #333333;
+}
+
+/*---------------------------------------popup block2-------------------------------------*/
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.5s ease 0s;
+}
+.popup.open {
+    opacity: 1;
+    visibility: visible;
+}
+.popup.open .popup_content{
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
+.popup_body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+.popup_content {
+    max-width: 700px;
+    background-color: white;
+    color: black;
+    padding: 30px;
+    position: relative;
+    transition: all 0.5s ease 0s;
+    opacity: 0;
+    transform: translate(0px, -100px);
+}
+
+.popup_close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: black;
+}
+.popup_close:hover{
+    color: #81d8d0;
+}
+
+.popup_title {
+    font-size: 32px;
+    margin: 0 0 1em 0;
+}
+
+.popup_text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    display: inline-block;
+    word-break: break-word;
+}
+
+.popup_text_with_url {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input_url{
+    width: 250px;
+    min-width: 100px;
+    padding: 3px;
+    margin: 0;
+    border-bottom: 1px solid black;
+}
+
+.copy {
+    margin: 0 0 0 20px;
+    padding: 10px;
+    border-radius: 1px;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+}
+.copy:hover {
+    background-color: #71c4bc;
+    color: white;
+}
+
+

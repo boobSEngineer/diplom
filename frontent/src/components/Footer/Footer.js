@@ -12,9 +12,7 @@ const Footer = (props) => {
                             <h2>Toy&Fonts</h2>
                         </div>
                         <div  className={f.wrapp_block1_content}>
-                            <p>Cайт о шрифтах, насчитывающий десятки категорий и тысячи шрифтов и начертаний.
-                                Cайт о шрифтах, насчитывающий десятки категорий и тысячи шрифтов и начертаний.
-                                Cайт о шрифтах, насчитывающий десятки категорий и тысячи шрифтов и начертаний.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem maiores, modi. Aspernatur consequuntur et quod. Accusamus aperiam consectetur eos necessitatibus officiis reprehenderit similique. Cupiditate itaque maiores nostrum, quis sunt vel!</p>
                         </div>
                     </div>
                     <div className={f.wrapp_block2}>

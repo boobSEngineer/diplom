@@ -1,0 +1,50 @@
+.block_info{
+    padding: 10px 0 10px 60px;
+}
+
+.block_info_title{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+
+.block_info_title h2 {
+    margin-left: 0;
+    margin-right: 10px;
+    font-weight: 400;
+    font-size: 30px;
+    color: #333333;
+    display: inline-block;
+    word-break: break-word;
+
+
+}
+
+.block_info_autor{
+    margin: 0;
+    margin-top: 10px;
+}
+.block_info_autor p{
+    font-size: 20px;
+    font-weight: 300;
+    color: #939393;
+}
+.block_info_autor a {
+    font-weight: 400;
+    color: #494949;
+}
+
+.block_text{
+    max-width: 700px;
+    padding: 30px 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.text1 {
+    line-height: 20px;
+    font-size: 14px;
+}
+

@@ -50,7 +50,7 @@ const App = (props) => {
         return (
             <>
                 <HeaderContainer updateQuery={updateQuery}/>
-                <body className="content">
+                <div className="content">
                 <Routes>
                     <Route path="/" exact element={<HomeContainer updateQuery={updateQuery}/>}/>
                     <Route path="/login" element={<LoginContainer/>}/>
@@ -80,7 +80,7 @@ const App = (props) => {
                     <Route path="/liked" element={<LikedContainer updateQuery={updateQuery}/>}/>
                     <Route path="/fonts_upload" element={<UploadFontsContainer />}/>
                 </Routes>
-                </body>
+                </div>
                 <Footer/>
             </>
 
