@@ -1,6 +1,5 @@
 .content {
-    padding-top: 3px;
-    padding: 0 20px;
+    padding: 5px 20px;
 
 }
 
@@ -22,7 +21,7 @@
 .card_square {
     margin: 0px;
     padding: 5px 0 0 0;
-    max-width: 370px;
+    max-width: 350px;
     width: 100%;
 
 }

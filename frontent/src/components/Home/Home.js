@@ -9,6 +9,7 @@ import {faEye} from "@fortawesome/free-solid-svg-icons";
 import {faFaceSadTear} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useNavigate} from "react-router-dom";
+import {fontRegistry} from "../../API/fontRegistry";
 
 const Home = (props) => {
     const [isShrunk, setShrunk] = useState(false);
@@ -60,7 +61,6 @@ const Home = (props) => {
     }, []);
 
     function switchSort(variant) {
-        debugger
         switch (variant) {
             case "All":
                 return props.updateQuery({sort: "/"}, "home");
@@ -172,7 +172,7 @@ const Home = (props) => {
                                                 <p className={b.grid_title_made}>Сделано</p>
                                             </div>
                                             <div className={b.box_content}>
-                                                ddddd
+                                                <p style={{'font-family':fontRegistry(f.path)}}>hello</p>
                                             </div>
                                         </div>
                                         <div className={b.box_bottom}>

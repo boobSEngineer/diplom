@@ -4,8 +4,8 @@ import {faChevronLeft, faEye, faHeart, faXmark} from "@fortawesome/free-solid-sv
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {faArrowUpFromBracket} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import FontPageInfo from "./Info/FontPageInfo";
 import {NavLink, useNavigate} from "react-router-dom";
+import {fontRegistry} from "../../API/fontRegistry";
 
 const Font = (props) => {
     const [auth, setAuth] = useState(false);
@@ -58,7 +58,7 @@ const Font = (props) => {
                             <div className={f.change_page}>
                                 <NavLink to={`/font/${props.font.id_font - 1}`}><FontAwesomeIcon icon={faChevronLeft}/></NavLink>
                                 <div className={f.title}>
-                                    <p>{props.font.full_name}</p>
+                                    <p style={{'font-family':fontRegistry(props.font.path)}}>{props.font.full_name}</p>
                                 </div>
                                 <NavLink to={`/font/${props.font.id_font + 1}`}><FontAwesomeIcon icon={faChevronRight}/></NavLink>
                             </div>

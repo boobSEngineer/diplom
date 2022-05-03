@@ -1,11 +1,12 @@
 import React, {useEffect} from "react";
-import {getFontThunkCreate, likeFontThunkCreate, likeForCurrentFontThunkCreate} from "../../redux/fonts-reducer";
+import {getFontThunkCreate, likeForCurrentFontThunkCreate} from "../../redux/fonts-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {getCurrentFont} from "../../redux/select/fonts-selector";
 import FontPage from "./FontPage";
 import {useParams} from "react-router-dom";
 import {getAuth} from "../../redux/select/user-selector";
+import {fontRegistry} from "../../API/fontRegistry";
 
 const FontContainer = (props) => {
     let {id_font} = useParams();
@@ -13,7 +14,7 @@ const FontContainer = (props) => {
     useEffect(() => {
         props.getFont(id_font)
     }, [id_font]);
-    id_font = parseInt(id_font)
+    id_font = parseInt(id_font);
 
     return <FontPage
         font={props.current_font}

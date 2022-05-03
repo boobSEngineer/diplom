@@ -16,11 +16,10 @@ const MyFonts = (props) => {
 
 
     const processForm = (l) => {
-        props.updateQuery({search: l.search_string},"uploaded");
+        props.updateQuery({search: l.search_string}, "uploaded");
     };
 
     function switchSort(variant) {
-        debugger
         switch (variant) {
             case "All":
                 return props.updateQuery({sort: "/liked"}, "uploaded");
@@ -63,8 +62,8 @@ const MyFonts = (props) => {
                                     <div className={c.input_something}>
                                         <input placeholder="Найти шрифт..." type="text" name="search_string"
                                                {...register('search_string',{onChange: (e) => {
-                                                       if (window.location.pathname === "/") {
-                                                           props.updateQuery({search: e.target.value})
+                                                       if (window.location.pathname.indexOf("my_fonts") !== -1) {
+                                                           props.updateQuery({search: e.target.value}, "uploaded")
                                                        }
                                                    }})}/>
                                     </div>
