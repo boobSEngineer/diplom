@@ -21,8 +21,9 @@ export const makeFontsQuery = (params) => {
     }
     query += ` from (font left join likes on font.id_font = likes.id_font) ${where_condition || ""} group by font.id_font`
     if (order) {
-        query += ` ${order}`
+        query += `${order}`
     }
+    query = ` select fl.*, usr.name as username from (${query}) as fl join usr on fl.id_user = usr.id_user`
     return query;
 }
 
@@ -71,7 +72,12 @@ router.get("/font/:id_font", authorize(true), async (req, res) => {
         res.json({success: false, message: `* Шрифт отсутствует.`});
         return
     }
-    res.json(font);
+    let id_font_before_after = await db.oneOrNone(`select f.* from (select id_font, lag(font.id_font) over (order by font.id_font) as before_id, lead(font.id_font) over (order by font.id_font) as after_id from font) as f where f.id_font = ${id_font}`);
+    if (!id_font_before_after) {
+        res.json({success: false, message: `* Внутреняя ошибка.`});
+        return
+    }
+    res.json({...font, ...id_font_before_after, success: true});
 });
 
 router.get("/liked_fonts", authorize(), async (req, res) => {

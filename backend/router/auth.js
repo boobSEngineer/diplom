@@ -7,9 +7,7 @@ import bcrypt from "bcrypt";
 
 const router = express.Router();
 const generateAccessToken = (id) => {
-    const payload = {
-        id
-    }
+    const payload = {id}
     return jwt.sign(payload, secretKey, {expiresIn: "24h"});
 }
 
@@ -64,11 +62,7 @@ router.post("/login", [
         } else {
             let token = generateAccessToken(user.id_user);
             res.cookie('token', token);
-            return res.json({
-                success: true,
-                login: user.login,
-                username: user.username,
-            })
+            return res.json({success: true, login: user.login, username: user.username})
         }
     } catch (e) {
         console.log(e)
