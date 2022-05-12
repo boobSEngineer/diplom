@@ -18,6 +18,7 @@ import ProfileInfoContainer from "./components/Profile/ProfileCurrentById/Profil
 import FontContainer from "./components/FontPage/FontContainer";
 import {Loading} from "./components/common/load/load";
 import FontInfoContainer from "./components/FontPage/Info/FontInfoContainer";
+import FontTesterContainer from "./components/FontPage/Tester/FontTesterContainer";
 
 const App = (props) => {
     let new_query = Object.fromEntries([...useSearchParams()[0]]);
@@ -70,7 +71,7 @@ const App = (props) => {
                         <Route path=":id_font" element={
                             <>
                                 <FontContainer/>
-                                <div/>
+                                <FontTesterContainer/>
                             </>
                         }/>
                     </Route>
