@@ -6,7 +6,6 @@ import {getCurrentFont} from "../../redux/select/fonts-selector";
 import FontPage from "./FontPage";
 import {useParams} from "react-router-dom";
 import {getAuth} from "../../redux/select/user-selector";
-import {fontRegistry} from "../../API/fontRegistry";
 
 const FontContainer = (props) => {
     let {id_font} = useParams();

@@ -11,7 +11,7 @@
 .prewie {
     width: 100%;
     min-height: 550px;
-    background: url('../common/accets/foll8.png') 0 0/100% auto no-repeat fixed;
+    background: url('../common/accets/foll3.png') 0 0/100% auto no-repeat fixed;
     margin: 0;
 }
 
@@ -247,4 +247,7 @@
     color: white;
 }
 
-
+.non_button {
+    margin: 0 50px;
+    padding: 0;
+}
