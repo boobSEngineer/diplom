@@ -13,7 +13,7 @@ const Register = (props) => {
 
     const registerOptions = {
         login: {required: "* Логин не может быть пустым."},
-        username: {required: "* Имя пользователя не может быть пустым."},
+        username: {required: "* Имя пользователя не может быть пустым.", maxLength: 50},
         password: {required: "* Пароль не может быть пустым."},
     };
 
@@ -38,6 +38,7 @@ const Register = (props) => {
                                        {...register('username', registerOptions.username)}/>
                                 <small>
                                     {errors?.username && errors.username.message}
+                                    {errors?.username?.type === "maxLength" && "* Максимальная длина имени пользвателя - 50 символов"}
                                 </small>
                             </div>
                             <div className={s.mid_input}>

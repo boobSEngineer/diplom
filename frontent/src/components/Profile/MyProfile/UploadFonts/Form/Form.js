@@ -11,7 +11,7 @@ const Form = (props) => {
     const handleError = (errors) => {
     };
     const registerOptions = {
-        full_name: {required: "* Название шрифта не может быть пустым"},
+        full_name: {maxLength: 50, required: "* Название шрифта не может быть пустым"},
         file: {required: "* Пожалуйста выберите файл"},
 
     };
@@ -31,6 +31,7 @@ const Form = (props) => {
                                {...register("full_name", registerOptions.full_name)}/>
                         <small className="text-danger">
                             {errors?.full_name && errors.full_name.message}
+                            {errors?.full_name && errors.full_name.type === "maxLength" ? "* Название шрифта не должно быть длинее 50 символов" : ""}
                         </small>
                     </div>
                     <div className={f.mid_input}>
@@ -42,7 +43,7 @@ const Form = (props) => {
                                {...register("license")}/>
                     </div>
                     <div className={f.mid_input}>
-                        <input type="text" name="about" placeholder="О чем"
+                        <input type="text" name="about" placeholder="Текст описание шрифта"
                                {...register("about")}/>
                     </div>
                     <div className={f.input_file}>
