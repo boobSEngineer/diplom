@@ -21,7 +21,7 @@
 .card_square {
     margin: 0px;
     padding: 5px 0 0 0;
-    max-width: 350px;
+    max-width: 400px;
     width: 100%;
 
 }
@@ -55,7 +55,7 @@
 }
 
 .box {
-    min-height: 300px;
+    min-height: 350px;
     padding: 15px;
     border: 1px solid #e8e8e8;
     border-radius: 5px;
@@ -140,6 +140,8 @@
     display: flex;
     align-items: center;
     margin: 100px auto;
+    width: 200px;
+    height: 200px;
 }
 
 .wrapper_null p {
@@ -150,4 +152,56 @@
 
 .box_null {
 
+}
+.button_arrow_up_circle {
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    border-radius: 20%;
+    height: 70px;
+    width: 70px;
+    background: #2f2f2f;
+    transition: all .3s ease;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+    box-shadow: 0px 0px 8px 0px rgba(87, 87, 87, 0.3);
+    z-index: 4;
+}
+
+.button_arrow_up_circle_hidden {
+    opacity: 0;
+}
+
+.button_arrow_up_circle:hover {
+    border: 1px solid #81d8d0;
+    background: #ffffff;
+}
+
+.button_arrow_up {
+    height: 70px;
+    width: 70px;
+    background: transparent;
+    color: #ffffff;
+}
+
+.button_arrow_up svg{
+    position: relative;
+    top: 19px;
+    left: 19px;
+    width: 30px;
+    height: 30px;
+}
+
+.button_arrow_up:hover {
+    color: #81d8d0;
+    top: 18px;
+    left: 18px;
+}
+
+.button_arrow_up_sticky_wrapper {
+
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 70px;
+    left: 30px;
 }
