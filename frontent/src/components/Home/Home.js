@@ -7,17 +7,18 @@ import {faTableCellsLarge} from "@fortawesome/free-solid-svg-icons";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import {faFaceSadTear} from "@fortawesome/free-solid-svg-icons";
+import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useNavigate} from "react-router-dom";
-import {fontRegistry} from "../../API/fontRegistry";
+import {fontRegistry} from "../../fontRegistry";
 import {useForm} from "react-hook-form";
 
 const Home = (props) => {
     const [isShrunk, setShrunk] = useState(false);
     const [style, setStyle] = useState(false);
     const [value, setValueFont] = useState(null);
-
     const [auth, setAuth] = useState(false);
+    const [size, setSize] = useState(40);
 
     const {register, handleSubmit} = useForm({mode: "onBlur"});
     const handleError = (errors) => {
@@ -86,10 +87,18 @@ const Home = (props) => {
         }
     }
 
+    let resetButton = () => {
+        document.getElementById("result").value = 50
+        setSize(parseInt(50));
+    }
+
     let navigate = useNavigate();
     let linkForFont = (id) => {
         navigate(`/font/${id}`)
         window.scrollTo({top: 0, behavior: "instant"});
+    }
+    let arrowUp = () => {
+        window.scrollTo({top: 0, behavior: "smooth"});
     }
 
     return (
@@ -123,18 +132,29 @@ const Home = (props) => {
                     <div className={c.container}>
                         <div className={c.range_font}>
                             <div className={c.font_px}>
-                                <select>
-                                    <option value="All" selected="selected">0px</option>
-                                    <option value="10px">5px</option>
-                                    <option value="20px">20px</option>
-                                    <option value="30px">30px</option>
-                                    <option value="40px">40px</option>
+                                <select value="arbitrary" onChange={
+                                    (e)=>{
+                                        setSize(parseInt(e.target.value))}
+                                }>
+                                    <option value="arbitrary" hidden>{size}px</option>
+                                    <option value="50" selected="selected">50px</option>
+                                    <option value="16">16px</option>
+                                    <option value="32">32px</option>
+                                    <option value="94">94px</option>
+                                    <option value="196">188px</option>
                                 </select>
                             </div>
-                            <input className={c.range} type="range"/>
+                            <input id="result" className={c.range} type="range" name="range" min="10" max="270"
+                                   {...register('range', {
+                                       onChange: (e) => {
+                                           {
+                                               setSize(parseInt(e.target.value))
+                                           }
+                                       }
+                                   })}/>
                             <div className={c.button_circle_padding_1}>
                                 <div className={c.button_circle}>
-                                    <button className={c.imge} type="reset">
+                                    <button className={c.imge} type="reset" onClick={()=>{resetButton()}}>
                                         <FontAwesomeIcon icon={faArrowRotateRight}/>
                                     </button>
                                 </div>
@@ -163,22 +183,14 @@ const Home = (props) => {
                             </div>
                         </div>
                     </div>
-                    {/*<div className={c.sort_language}>*/}
-                    {/*    <select>*/}
-                    {/*        <option value="All" selected="selected"> Язык</option>*/}
-                    {/*        <option value="">Русский</option>*/}
-                    {/*        <option value="">Английский</option>*/}
-                    {/*    </select>*/}
-                    {/*</div>*/}
                 </div>
             </div>
 
             <div className={c.wrapper}>
                 <div className={b.content}>
-
                     {
                         props.fonts.length > 0 ?
-
+                            <>
                             <div className={style ? b.grid_row : b.grid_square}>
                                 {props.fonts.map(f =>
                                     <div className={style ? b.card_row : b.card_square}>
@@ -187,10 +199,12 @@ const Home = (props) => {
                                         }}>
                                             <div className={b.box_top}>
                                                 <p className={b.grid_title}>{f.full_name}</p>
-                                                <p className={b.grid_title_made}>Сделано</p>
+                                                <p className={b.grid_title_made}>Загружено {f.username}</p>
                                             </div>
                                             <div className={b.box_content}>
-                                                <p style={{'font-family': fontRegistry(f.path)}}>{value? value:"Hello world!"}</p>
+                                                <p style={{'font-family': fontRegistry(f.path), 'font-size': size}}>
+                                                    {value? value:"Hello world!"}
+                                                </p>
                                             </div>
                                         </div>
                                         <div className={b.box_bottom}>
@@ -210,8 +224,11 @@ const Home = (props) => {
                                             </div>
                                         </div>
                                     </div>
+
                                 )}
                             </div>
+                        </>
+
                             : <div className={b.wrapper_null}>
                                 <div className={b.box_null}>
                                     <p>К сожелению ничего не нашлось <FontAwesomeIcon
@@ -221,8 +238,15 @@ const Home = (props) => {
                     }
                 </div>
             </div>
+
+            <div className={b.button_arrow_up_circle + " " + b.button_arrow_up_sticky_wrapper + (!isShrunk ? " " + b.button_arrow_up_circle_hidden : "")}>
+                <div className={b.button_arrow_up} onClick={()=> {arrowUp()}}>
+                    <FontAwesomeIcon icon={faArrowUp}/>
+                </div>
+            </div>
+
         </>
     )
 }
-
 export default Home;
+

@@ -7,7 +7,7 @@ import {
     likeFontThunkCreate,
     RequestFontsThunkCreate, selectFontsByThunkCreate,
 } from "../../redux/fonts-reducer";
-import {getAuth} from "../../redux/select/user-selector";
+import {getAuth, getCurrentUser} from "../../redux/select/user-selector";
 import {useSearchParams} from "react-router-dom";
 
 const HomeContainer = (props) => {
