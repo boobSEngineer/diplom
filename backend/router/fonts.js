@@ -20,10 +20,11 @@ export const makeFontsQuery = (params) => {
         query += `, false as is_liked`
     }
     query += ` from (font left join likes on font.id_font = likes.id_font) ${where_condition || ""} group by font.id_font`
+    query = ` select fl.*, usr.name as username from (${query}) as fl join usr on fl.id_user = usr.id_user`
     if (order) {
         query += `${order}`
     }
-    query = ` select fl.*, usr.name as username from (${query}) as fl join usr on fl.id_user = usr.id_user`
+
     return query;
 }
 

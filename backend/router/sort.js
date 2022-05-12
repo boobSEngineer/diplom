@@ -7,9 +7,10 @@ const router = express.Router();
 
 router.get("/by", authorize(true), async (req, res) => {
     let {sort, search, liked, uploaded} = req.query
+    console.log(req.query)
     let fonts = null;
     let order_by = (params) => {
-        return `ORDER BY ${params} DESC`
+        return ` ORDER BY ${params} DESC`
     };
     let condition = [];
     if (req.user && req.user.id_user) {
@@ -31,13 +32,13 @@ router.get("/by", authorize(true), async (req, res) => {
     let order = null;
     switch (sort) {
         case "views":
-            order = order_by(`views`);
+            order = order_by(`fl.views`);
             break
         case "likes":
             order = order_by(`like_counter`);
             break
         case "data":
-            order = order_by(`font.id_font`);
+            order = order_by(`fl.id_font`);
             break;
     }
     res.json(await db.any(makeFontsQuery({
