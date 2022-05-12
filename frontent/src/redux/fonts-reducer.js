@@ -10,7 +10,7 @@ const SET_LIKE_FOR_CURRENT_FONT = 'SET-LIKE-FOR-CURRENT-FONT';
 
 const initialState = {
     fonts: [],
-    current_font:{},
+    current_font:null,
     pageSize: 100,
     totalFontsCount: 0,
     status_message: null,
@@ -39,7 +39,6 @@ const fontsReducer = (state = initialState, action) => {
                 current_font: action.font,
             }
         }
-
         case SET_LIKE_FOR_CURRENT_FONT: {
             return {
                 ...state,
@@ -47,7 +46,6 @@ const fontsReducer = (state = initialState, action) => {
 
             }
         }
-
         case LIKE: {
             return {
                 ...state,
@@ -118,14 +116,16 @@ export const getFontThunkCreate = (id_font) => {
         if (id_font !== null) {
             fontsAPI.getCurrentFont(id_font)
                 .then(data => {
-                    if (data != null) {
+                    if (data != null && data.success) {
                         fontsAPI.viewFont(id_font).then(() => {
                         });
                         dispatch(setCurrentFontCreate(data))
+                    } else {
+                        dispatch(setCurrentFontCreate(null))
                     }
                 })
         } else {
-            dispatch(setCurrentFontCreate([]))
+            dispatch(setCurrentFontCreate(null))
         }
 
     }
