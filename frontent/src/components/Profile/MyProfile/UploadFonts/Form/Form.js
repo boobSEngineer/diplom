@@ -43,7 +43,7 @@ const Form = (props) => {
                                {...register("license")}/>
                     </div>
                     <div className={f.mid_input}>
-                        <input type="text" name="about" placeholder="Текст описание шрифта"
+                        <input type="text" name="about" placeholder="Текст описания шрифта"
                                {...register("about")}/>
                     </div>
                     <div className={f.input_file}>

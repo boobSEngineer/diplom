@@ -49,7 +49,8 @@ const ProfileInfo = (props) => {
 
     let navigate = useNavigate();
     let linkForFont = (id) => {
-        navigate(`/font/${id}`)
+        navigate(`/font/${id}`);
+        window.scrollTo({top: 0, behavior: "instant"});
     }
 
 
@@ -109,7 +110,7 @@ const ProfileInfo = (props) => {
                                         }}>
                                             <div className={b.box_top}>
                                                 <p className={b.grid_title}>{f.full_name}</p>
-                                                <p className={b.grid_title_made}>Сделано</p>
+                                                <p className={b.grid_title_made}>Загружено {f.username}</p>
                                             </div>
                                             <div className={b.box_content}>
                                                 ddddd
