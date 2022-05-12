@@ -28,36 +28,23 @@ router.get("/by", authorize(true), async (req, res) => {
     } else {
         condition = `WHERE ` + condition.join(" AND ");
     }
+    let order = null;
     switch (sort) {
         case "views":
-            fonts = await db.any(makeFontsQuery({
-                current_id_user: req.user ? req.user.id_user : null,
-                where_condition: condition,
-                order: order_by(`views`)
-            }));
+            order = order_by(`views`);
             break
         case "likes":
-            fonts = await db.any(makeFontsQuery({
-                current_id_user: req.user ? req.user.id_user : null,
-                where_condition: condition,
-                order: order_by(`like_counter`)
-            }));
+            order = order_by(`like_counter`);
             break
         case "data":
-            fonts = await db.any(makeFontsQuery({
-                current_id_user: req.user ? req.user.id_user : null,
-                where_condition: condition,
-                order: order_by(`font.id_font`)
-            }));
+            order = order_by(`font.id_font`);
             break;
-        default:
-            fonts = await db.any(makeFontsQuery({
-                current_id_user: req.user ? req.user.id_user : null,
-                where_condition: condition
-            }));
     }
-    res.json(fonts)
-
+    res.json(await db.any(makeFontsQuery({
+        current_id_user: req.user ? req.user.id_user : null,
+        where_condition: condition,
+        order: order
+    })));
 });
 
 
