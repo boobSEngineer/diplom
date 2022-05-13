@@ -18,7 +18,7 @@ const Form = (props) => {
 
     useEffect(() => {
         if (props.status_success) {
-            reset()
+            reset();
         }
     }, [props.status_success]);
 

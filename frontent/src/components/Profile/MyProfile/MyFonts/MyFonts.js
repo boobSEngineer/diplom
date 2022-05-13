@@ -91,7 +91,8 @@ const MyFonts = (props) => {
                                                     </div>
                                                     <div className={m.font_link}>
                                                         <a onClick={() => {
-                                                            props.deleteFontById(f.id_font, props.id_user)
+                                                            if (window.confirm("Вы точно хотите удалить шрифт?"))
+                                                                props.deleteFontById(f.id_font, props.id_user)
                                                         }}><FontAwesomeIcon icon={faXmark}/></a>
                                                         <a href={`http://localhost:4000/file/fonts/${f.path}`}>Скачать</a>
                                                     </div>

@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.get("/by", authorize(true), async (req, res) => {
     let {sort, search, liked, uploaded} = req.query
-    console.log(req.query)
     let fonts = null;
     let order_by = (params) => {
         return ` ORDER BY ${params} DESC`
