@@ -5,11 +5,10 @@
 
 /*----------------СЕТКА КВАДРАТ------------------*/
 .grid_square {
-    height: 100%;
     margin: 0px;
     display: grid;
+    grid-auto-rows: minmax(350px, auto);
     grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
-    grid-template-rows: repeat(auto-fit, minmax(350px, auto));
     grid-column-gap: 30px;
     grid-row-gap: 30px;
     justify-content: space-around;
@@ -74,7 +73,7 @@
 
 .box_content {
     height: 100%;
-    margin: 20px 5px 30px 5px;;
+    margin: 20px 5px 30px 5px;
 }
 .box_content p {
 }
