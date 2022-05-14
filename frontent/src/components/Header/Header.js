@@ -41,7 +41,7 @@ const Header = (props) => {
                         </div>
                         <div className={h.header_top_block2}>
                             <ul className={h.nav}>
-                                <li><a href="">Создать новый шрифт</a></li>
+                                <li><a href="/editor">Создать новый шрифт</a></li>
                                 {props.isAuth ?
                                     <>
                                         <ul className={h.desktop_nav}>

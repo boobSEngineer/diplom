@@ -19,6 +19,7 @@ import FontContainer from "./components/FontPage/FontContainer";
 import {Loading} from "./components/common/load/load";
 import FontInfoContainer from "./components/FontPage/Info/FontInfoContainer";
 import FontTesterContainer from "./components/FontPage/Tester/FontTesterContainer";
+import Edit from "./components/Edit/Edit";
 
 const App = (props) => {
     let new_query = Object.fromEntries([...useSearchParams()[0]]);
@@ -55,6 +56,7 @@ const App = (props) => {
                 <Routes>
                     <Route path="/" exact element={<HomeContainer updateQuery={updateQuery}/>}/>
                     <Route path="/login" element={<LoginContainer/>}/>
+                    <Route path="/editor" element={<Edit/>}/>
                     <Route path="/registration" element={<RegisterContainer/>}/>
                     <Route path="/profile">
                         <Route path=":id_user" element={<ProfileInfoContainer/>}/>
