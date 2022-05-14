@@ -3,6 +3,7 @@
     padding: 30px 0;
     margin: 0 auto;
 }
+
 .title {
     padding: 0 0 25px 50px;
     font-size: 32px;
@@ -26,7 +27,7 @@
 
 .box2 {
     grid-area: post-2;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -40,6 +41,7 @@
     align-items: center;
     margin: 0 0 25px 50px;
 }
+
 .button_down button {
     margin: 0;
     background: black;
@@ -48,17 +50,20 @@
     height: 42px;
     border-radius: 5px;
 }
+
 .button_down button:hover {
     background: white;
     color: #81d8d0;
     border: 2px solid #81d8d0;
 }
+
 .button_down input {
     padding: 3px 4px;
     margin: 0;
     border-bottom: 1px solid black;
 }
-.button_down p{
+
+.button_down p {
     margin: 0 10px 0 20px;
 }
 
@@ -70,6 +75,7 @@
     align-items: center;
     padding: 0 0 20px 0;
 }
+
 .input_box p {
     margin: 0 0 0 40px;
 }
@@ -83,7 +89,9 @@
 }
 
 
-.box2 > div { margin: 0; }
+.box2 > div {
+    margin: 0;
+}
 
 .box1 {
     grid-area: post-1;
@@ -119,6 +127,7 @@
     border-radius: 5px;
     background: black;
 }
+
 .button svg {
     color: white;
     width: 30px;
@@ -129,6 +138,7 @@
     background: white;
     border: 2px solid #81d8d0;
 }
+
 .button:hover svg {
     color: #81d8d0;
 }
@@ -157,9 +167,27 @@
     transform: translate3d(0px, -1px, 0px);
 }
 
+.box_card_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box_card_top h2 {
+    margin: 0;
+}
+
+.box_card_top svg {
+    margin: 0 0 10px 0;
+}
+.box_card_top svg:hover {
+    color: #81d8d0;
+}
+
 .box_card_content {
 
 }
+
 /*---------------------------------------*/
 
 .message {

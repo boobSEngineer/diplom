@@ -3,6 +3,7 @@ import '../../App.css';
 import e from './Edit.module.css';
 import Designer, {Path, Preview} from 'react-designer';
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import svg2ttf from "svg2ttf";
 
@@ -13,7 +14,7 @@ const buildSvgFont = (glyphs, name="test") => {
         + `<svg xmlns="http://www.w3.org/2000/svg">\n`
         + `\t<metadata></metadata>\n\t<defs>\n`
         + `\t\t<font id="${name}" horiz-adv-x="500">\n`
-        + `\t\t<font-face units-per-em="500" ascent="400" descent="-100"/>`;
+        + `\t\t<font-face units-per-em="500" ascent="500" descent="0"/>`;
 
     const norm = x => Math.round(x * 10) / 10;
 
@@ -118,6 +119,12 @@ const Edit = () => {
         setTimeout(() => setGlyphId(-glyphId), 0);
     }
 
+    const deleteGlyph = (id) => {
+        setGlyphsAndSave(glyphs.filter( g => {
+            return g.id !== id;
+        }));
+    }
+
     // pt = preview transform
     const pt = x => x / 4;
 
@@ -152,7 +159,11 @@ const Edit = () => {
                             c =>
                                 <>
                                     <div className={e.box_card} onClick={() => {setGlyphId(-c.id);}}>
-                                        <h2>Card: {c.symbol}</h2>
+                                        <div className={e.box_card_top}>
+                                            <h2>Card: {c.symbol}</h2>
+                                            <FontAwesomeIcon icon={faXmark} onClick={() => {deleteGlyph(c.id)}}/>
+                                        </div>
+
                                         <br/>
                                         <div className={e.box_card_content}>
                                             <Preview width={125} height={125}
@@ -218,4 +229,86 @@ const Edit = () => {
 }
 
 export default Edit;
+
+
+
+// -------------------------------------------------
+// TWEAK PATH EDITOR
+// -------------------------------------------------
+
+class CustomPathEditor extends Path.meta.editor {
+    styles = {
+        edge: {
+            stroke: "#b9b9b9"
+        },
+        initialVertex: {
+            fill: "#ffd760"
+        },
+        canvas: {
+            position: "absolute"
+        },
+        vertex: {
+            fill: "#3381ff",
+            strokeWidth: 0
+        },
+    };
+
+    render() {
+        let {object, width, height} = this.props;
+        let {path} = object;
+
+        let {moveX, moveY, x, y} = object;
+
+        let offsetX = x - moveX,
+            offsetY = y - moveY;
+
+        return (
+            <div style={this.styles.canvas}
+                 onMouseUp={this.onMouseUp.bind(this)}
+                 onMouseMove={this.onMouseMove.bind(this)}
+                 onMouseDown={this.onMouseDown.bind(this)}>
+                <svg style={{width, height}}>
+                    <g transform={`translate(${offsetX} ${offsetY})
+                         rotate(${object.rotate} ${object.x} ${object.y})`}>
+                        {object.path.map(({x1, y1, x2, y2, x, y}, i) => (
+                            <g key={i}>
+                                {x2 && y2 && (
+                                    <g>
+                                        <line x1={x2} y1={y2}
+                                              x2={x} y2={y}
+                                              style={this.styles.edge}
+                                              onMouseDown={this.moveVertex.bind(this, i, 'x', 'y')}  />
+
+                                        <circle r={4} cx={x2} cy={y2}
+                                                style={this.styles.vertex}
+                                                onMouseDown={this.moveVertex.bind(this, i, 'x2', 'y2')} />
+
+                                        <circle r={4} cx={x} cy={y}
+                                                style={this.styles.vertex}
+                                                onMouseDown={this.moveVertex.bind(this, i, 'x', 'y')} />
+                                    </g>
+                                )}
+                                {(
+                                    <g>
+                                        <line x1={i > 0 ? path[i - 1].x : moveX} y1={i > 0 ? path[i - 1].y : moveY}
+                                              style={this.styles.edge}
+                                              onMouseDown={this.moveVertex.bind(this, i, 'x1', 'y1')}
+                                              x2={x1} y2={y1} stroke="black" />
+
+                                        <circle style={this.styles.vertex} r={4} cx={x1} cy={y1}
+                                                onMouseDown={this.moveVertex.bind(this, i, 'x1', 'y1')} />
+
+                                        <circle r={4} cx={moveX} cy={moveY}
+                                                style={{...this.styles.vertex, ...this.styles.initialVertex}} />
+                                    </g>
+                                )}
+                            </g>
+                        ))}
+                    </g>
+                </svg>
+            </div>
+        );
+    }
+}
+Path.meta.editor = CustomPathEditor;
 
